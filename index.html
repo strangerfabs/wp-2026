@@ -436,6 +436,9 @@
     background: var(--butter);
     border-color: var(--butter);
   }
+  /* must out-specify body.signed .stop::before, or the gate dot loses its
+     colour and the unit change stops being marked */
+  body.signed .gate::before { border-color: var(--butter); }
   .gate .stop-when { color: var(--butter); }
   .gate .stop-what { color: var(--cream); }
   .gate-title {
