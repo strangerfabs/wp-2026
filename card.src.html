@@ -244,14 +244,17 @@
     background-image: repeating-conic-gradient(#2A2233 0% 25%, #FFFFFF 0% 50%);
     background-size: .85rem .85rem;
   }
-  /* the label sits on the asphalt, so it has to be light */
+  /* the label sits on the asphalt: light type, and on its own dark patch so
+     the centre marking does not run straight through the letters */
   .band-label {
     font-family: var(--f-black);
     font-size: .78rem;
     letter-spacing: .26em;
     text-transform: uppercase;
     color: var(--cream);
-    text-shadow: 0 1px 3px rgba(0,0,0,.6);
+    background: #2A2233;
+    padding: .3rem .6rem .3rem .8rem;
+    border-radius: 2px;
   }
   .finish .band-label { color: var(--butter); font-size: 1.1rem; }
 
