@@ -1,4 +1,4 @@
-<title>Hannahs Weekend Pass</title>
+<title>Hannahs Startnummer</title>
 
 <style>
   :root {
@@ -228,7 +228,7 @@
   }
   .line .pink { color: var(--hot); font-style: italic; }
 
-  /* ---------- the reveal: ticket taped to the board ---------- */
+  /* ---------- the reveal: a race bib, not a ticket ---------- */
 
   .reveal {
     min-height: 100svh;
@@ -237,131 +237,172 @@
     padding-block: 10vh;
   }
 
-  .ticket-wrap {
+  .bib-stack {
     position: relative;
     z-index: 3;
     width: 100%;
-    max-width: 19rem;   /* rotated card must still clear a 375px viewport */
+    max-width: 18rem;
     opacity: 0;
     transform: translateY(2rem) rotate(-2deg) scale(.95);
     transition: opacity .8s ease, transform 1s cubic-bezier(.34,1.4,.5,1);
   }
-  .ticket-wrap.in { opacity: 1; transform: rotate(-2deg); }
+  .bib-stack.in { opacity: 1; transform: rotate(-2deg); }
 
-  .tape {
+  /* the second runner's bib, peeking out behind hers */
+  .bib.behind {
     position: absolute;
-    width: 4.6rem;
-    height: 1.5rem;
-    background: var(--tape);
-    box-shadow: 0 1px 2px rgba(42,34,51,.18);
-    z-index: 4;
+    inset: 0;
+    transform: rotate(7deg) translate(10px, -8px);
+    z-index: -1;
+    filter: saturate(.75);
   }
-  .tape.tl { top: -.7rem; left: -1rem; transform: rotate(-28deg); }
-  .tape.br { bottom: -.7rem; right: -1rem; transform: rotate(-28deg); background: rgba(255,179,209,.6); }
 
-  .ticket {
+  .bib {
     background: var(--paper-2);
-    border-radius: 4px;
-    text-align: left;
+    border-radius: 5px;
+    padding: 1.1rem 1.2rem 0;
     box-shadow: 0 10px 24px -8px rgba(42,34,51,.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5rem;
     overflow: hidden;
   }
 
-  .ticket-top {
-    height: 8px;
-    background: repeating-linear-gradient(90deg,
-      var(--hot) 0 14px, var(--butter) 14px 28px,
-      var(--denim) 28px 42px, var(--mint) 42px 56px);
-  }
-
-  .ticket-main {
-    padding: 1.3rem 1.2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.05rem;
-  }
-
-  .tk-eyebrow {
-    font-family: var(--f-mono);
-    font-size: .62rem;
-    letter-spacing: .18em;
+  .bib-org {
+    font-family: var(--f-black);
+    font-size: .74rem;
+    letter-spacing: .04em;
     text-transform: uppercase;
     color: var(--hot);
-    font-weight: 700;
+    text-align: center;
+    line-height: 1.25;
+  }
+  .bib-org small {
+    display: block;
+    font-family: var(--f-mono);
+    font-size: .58rem;
+    font-weight: 400;
+    letter-spacing: .2em;
+    color: var(--ink-soft);
+    margin-top: .25rem;
   }
 
-  .tk-event {
+  .bib-num {
     font-family: var(--f-black);
-    font-size: clamp(1.7rem, 8.5vw, 2.2rem);
-    line-height: .95;
-    letter-spacing: -.03em;
-    margin: 0;
+    font-size: clamp(4.2rem, 26vw, 6rem);
+    line-height: .82;
+    letter-spacing: -.05em;
     color: var(--ink);
-    text-transform: uppercase;
+    font-variant-numeric: tabular-nums;
   }
 
-  .tk-date {
-    font-family: var(--f-type);
-    font-size: 1rem;
+  .bib-name {
+    font-family: var(--f-black);
+    font-size: 1.15rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
     color: var(--denim);
   }
-  .tk-venue {
-    font-family: var(--f-mono);
-    font-size: .72rem;
-    color: var(--ink-soft);
-    line-height: 1.5;
-    margin-top: .2rem;
-  }
 
-  .tk-grid {
+  .bib-meta {
+    width: 100%;
+    border-top: 1.5px dashed rgba(42,34,51,.22);
+    padding-top: .7rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: .9rem .8rem;
-    border-top: 1.5px dashed rgba(42,34,51,.2);
-    padding-top: 1rem;
+    gap: .55rem .7rem;
+    text-align: left;
   }
-  .tk-grid > div { display: flex; flex-direction: column; gap: .2rem; min-width: 0; }
-  .tk-grid span {
+  .bib-meta > div { display: flex; flex-direction: column; gap: .12rem; min-width: 0; }
+  .bib-meta span {
     font-family: var(--f-mono);
-    font-size: .56rem;
+    font-size: .54rem;
     letter-spacing: .16em;
     text-transform: uppercase;
     color: var(--ink-soft);
   }
-  .tk-grid b {
+  .bib-meta b {
     font-family: var(--f-type);
-    font-size: .98rem;
-    letter-spacing: -.01em;
+    font-size: .9rem;
   }
-  .tk-grid b.act { color: var(--hot); font-family: var(--f-black); text-transform: uppercase; }
 
-  .ticket-stub {
-    border-top: 2px dashed rgba(42,34,51,.25);
-    padding: .85rem 1.2rem;
+  .bib-chip {
+    width: calc(100% + 2.4rem);
+    margin: .8rem -1.2rem 0;
+    padding: .5rem 1.2rem;
+    background: rgba(255,179,209,.18);
+    border-top: 1px solid rgba(42,34,51,.1);
     display: flex;
     align-items: center;
-    gap: .9rem;
-    background: rgba(255,179,209,.14);
+    gap: .7rem;
   }
-  .barcode {
-    height: 2.1rem;
+  .chip-bars {
+    height: 1.5rem;
     flex: 1;
     min-width: 0;
     background: repeating-linear-gradient(90deg,
       var(--ink) 0 2px, transparent 2px 5px,
-      var(--ink) 5px 6px, transparent 6px 10px,
-      var(--ink) 10px 13px, transparent 13px 15px);
-    opacity: .8;
+      var(--ink) 5px 6px, transparent 6px 10px);
+    opacity: .75;
   }
-  .stub-code {
+  .chip-code {
     font-family: var(--f-mono);
-    font-size: .6rem;
-    letter-spacing: .1em;
+    font-size: .56rem;
+    letter-spacing: .12em;
     text-transform: uppercase;
     color: var(--ink-soft);
-    text-align: right;
     white-space: nowrap;
-    line-height: 1.5;
+  }
+
+  /* safety-pin holes, the detail that makes it read as a real bib */
+  .pin {
+    position: absolute;
+    width: .55rem;
+    height: .55rem;
+    border-radius: 50%;
+    background: var(--paper);
+    box-shadow: inset 0 1px 2px rgba(42,34,51,.35);
+  }
+  .pin.tl { top: .5rem; left: .5rem; }
+  .pin.tr { top: .5rem; right: .5rem; }
+  .pin.bl { bottom: .5rem; left: .5rem; }
+  .pin.br { bottom: .5rem; right: .5rem; }
+
+  .note {
+    position: relative;
+    z-index: 2;
+    background: var(--cream);
+    padding: 1.1rem 1.2rem;
+    max-width: 20rem;
+    transform: rotate(-1.5deg);
+    box-shadow: 0 4px 10px -3px rgba(42,34,51,.3);
+    font-family: var(--f-type);
+    font-size: .92rem;
+    line-height: 1.6;
+    text-align: left;
+    color: var(--ink);
+  }
+  .note b { color: var(--hot); }
+  .note .kicker {
+    display: block;
+    font-family: var(--f-mono);
+    font-size: .58rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: .5rem;
+  }
+  /* the BUNT. callback carries the old ticket edge as its stripe */
+  .note.encore { transform: rotate(1.5deg); padding-top: 1.4rem; }
+  .note.encore::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 7px;
+    background: repeating-linear-gradient(90deg,
+      var(--hot) 0 14px, var(--butter) 14px 28px,
+      var(--denim) 28px 42px, var(--mint) 42px 56px);
   }
 
   /* ---------- polaroid ---------- */
@@ -374,6 +415,7 @@
     box-shadow: 0 8px 18px -6px rgba(42,34,51,.4);
     transform: rotate(3deg);
     width: clamp(9rem, 46vw, 12rem);
+    margin: 0;
   }
   .polaroid svg { display: block; width: 100%; height: auto; }
   .polaroid figcaption {
@@ -388,10 +430,7 @@
 
   /* ---------- countdown ---------- */
 
-  .count {
-    gap: 1.2rem;
-    padding-block: 14vh;
-  }
+  .count { gap: 1.2rem; padding-block: 14vh; }
   .count-label {
     position: relative;
     z-index: 2;
@@ -440,33 +479,8 @@
     color: rgba(42,34,51,.65);
   }
 
-  /* ---------- the small print, taped on ---------- */
-
   .note-wrap { padding-block: 7vh 5vh; }
-  .note {
-    position: relative;
-    z-index: 2;
-    background: var(--cream);
-    padding: 1.1rem 1.2rem;
-    max-width: 20rem;
-    transform: rotate(-1.5deg);
-    box-shadow: 0 4px 10px -3px rgba(42,34,51,.3);
-    font-family: var(--f-type);
-    font-size: .92rem;
-    line-height: 1.6;
-    text-align: left;
-    color: var(--ink);
-  }
-  .note b { color: var(--hot); }
-  .note .kicker {
-    display: block;
-    font-family: var(--f-mono);
-    font-size: .58rem;
-    letter-spacing: .18em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    margin-bottom: .5rem;
-  }
+  .encore-wrap { padding-block: 5vh 7vh; }
 
   /* ---------- close ---------- */
 
@@ -503,13 +517,13 @@
 
   /* ---------- phone-first sticker placement ---------- */
 
-  .s-disco  { width: 24%; top: 4%;  right: 4%;  }
   .s-cup    { width: 20%; top: 3%;  left: 6%;   transform: rotate(-8deg); }
+  .s-lips1  { width: 18%; top: 5%;  left: 33%;  transform: rotate(-14deg); }
+  .s-disco  { width: 24%; top: 4%;  right: 4%;  }
   .s-bfly1  { width: 17%; top: 15%; left: 2%;   transform: rotate(12deg); }
-  .s-lips1  { width: 18%; top: 5%;  left: 33%; transform: rotate(-14deg); }
   .s-star1  { width: 13%; bottom: 22%; left: 5%; transform: rotate(-10deg); }
   .s-star2  { width: 10%; bottom: 30%; right: 8%; transform: rotate(14deg); }
-  .s-flake1 { width: 15%; bottom: 12%; right: 4%; transform: rotate(8deg); }
+  .s-shoe   { width: 22%; bottom: 10%; right: 4%; transform: rotate(8deg); }
   .s-eye    { width: 13%; bottom: 8%;  left: 8%;  transform: rotate(-6deg); }
 
   .s-tulip  { width: 26%; top: 6%;  left: 3%;   transform: rotate(-7deg); }
@@ -517,15 +531,18 @@
   .s-dice   { width: 15%; bottom: 14%; right: 6%; transform: rotate(-12deg); }
   .s-mtn    { width: 30%; bottom: 6%; left: 2%;  transform: rotate(4deg); }
 
-  .s-glass  { width: 20%; top: 8%;  left: 4%;   transform: rotate(-9deg); }
+  .s-km     { width: 27%; top: 7%;  left: 3%;   transform: rotate(-9deg); }
   .s-bfly2  { width: 16%; top: 6%;  right: 6%;  transform: rotate(-16deg); }
   .s-star3  { width: 11%; bottom: 18%; left: 6%; transform: rotate(18deg); }
-  .s-flake2 { width: 13%; bottom: 10%; right: 5%; transform: rotate(-10deg); }
+  .s-medal  { width: 18%; bottom: 9%; right: 5%; transform: rotate(-10deg); }
 
   .s-heart  { width: 16%; top: 5%;  right: 5%;  transform: rotate(11deg); }
   .s-flower { width: 20%; bottom: 8%; left: 4%; transform: rotate(-8deg); }
+
   /* stuck on the note's corner rather than hidden behind it */
-  .s-ski    { width: 17%; top: 2%;  left: 5%;   transform: rotate(-16deg); z-index: 3; }
+  .s-watch  { width: 17%; top: 2%;  left: 5%;   transform: rotate(-16deg); z-index: 3; }
+  .s-disco2 { width: 17%; top: 1%;  right: 6%;  transform: rotate(10deg); z-index: 3; }
+
   .s-bfly3  { width: 15%; top: 6%;  right: 7%;  transform: rotate(14deg); }
   .s-lips2  { width: 16%; bottom: 9%; left: 7%; transform: rotate(9deg); }
 
@@ -535,9 +552,9 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .line, .ticket-wrap { opacity: 1; transition: none; }
+    .line, .bib-stack { opacity: 1; transition: none; }
     .line { transform: rotate(-1deg); }
-    .ticket-wrap { transform: rotate(-2deg); }
+    .bib-stack { transform: rotate(-2deg); }
     .hint::after { animation: none; }
   }
 </style>
@@ -559,10 +576,15 @@
       </g>
     </g></svg></div>
 
+    <div class="sticker s-lips1"><svg viewBox="0 0 100 100"><g class="cut">
+      <path d="M50 34c8-12 26-16 34-6 6 8-2 14-8 16 8 0 12 6 8 12-8 12-24 20-34 20S22 68 14 56c-4-6 0-12 8-12-6-2-14-8-8-16 8-10 26-6 36 6z" fill="#D62246"/>
+      <path class="det" d="M18 46c12-3 52-3 64 0-10 5-54 5-64 0z" fill="#8E1028"/>
+      <path class="det" d="M50 34c-4-5-10-8-15-8 6-1 12 1 15 5 3-4 9-6 15-5-5 0-11 3-15 8z" fill="#F2708A" opacity=".7"/>
+    </g></svg></div>
+
     <div class="sticker s-disco"><svg viewBox="0 0 100 100"><g class="cut">
       <rect x="46" y="2" width="8" height="14" rx="2" fill="#9AA3B0"/>
       <circle cx="50" cy="56" r="38" fill="#C7CDD6"/>
-      <circle cx="50" cy="56" r="38" fill="none" stroke="#8B93A1" stroke-width="1.5"/>
       <path d="M12 56h76M50 18v76M22 30l56 52M78 30L22 82M16 40h68M16 72h68M34 20v72M66 20v72"
             stroke="#8B93A1" stroke-width="2.2" fill="none" opacity=".85"/>
       <circle class="det" cx="36" cy="42" r="7" fill="#EEF1F5" opacity=".9"/>
@@ -575,12 +597,6 @@
       <path d="M50 50C40 76 20 82 18 68c-2-12 20-22 32-18z" fill="#A8C4E8"/>
       <path d="M50 50c10 26 30 32 32 18 2-12-20-22-32-18z" fill="#E8A0C0"/>
       <rect class="det" x="46" y="32" width="8" height="46" rx="4" fill="#6B3A5B"/>
-    </g></svg></div>
-
-    <div class="sticker s-lips1"><svg viewBox="0 0 100 100"><g class="cut">
-      <path d="M50 34c8-12 26-16 34-6 6 8-2 14-8 16 8 0 12 6 8 12-8 12-24 20-34 20S22 68 14 56c-4-6 0-12 8-12-6-2-14-8-8-16 8-10 26-6 36 6z" fill="#D62246"/>
-      <path class="det" d="M18 46c12-3 52-3 64 0-10 5-54 5-64 0z" fill="#8E1028"/>
-      <path class="det" d="M50 34c-4-5-10-8-15-8 6-1 12 1 15 5 3-4 9-6 15-5-5 0-11 3-15 8z" fill="#F2708A" opacity=".7"/>
     </g></svg></div>
 
     <div class="eyebrow">15. August 2026</div>
@@ -599,16 +615,15 @@
     <div class="sticker s-star2"><svg viewBox="0 0 100 100"><g class="cut">
       <path d="M50 6l12 30 32 2-25 21 8 31-27-18-27 18 8-31L6 38l32-2z" fill="#E8398B"/>
     </g></svg></div>
-    <div class="sticker s-flake1"><svg viewBox="0 0 100 100">
-      <g fill="none" stroke="#fff" stroke-width="16" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M50 8v84M14 29l72 42M86 29L14 71"/>
-        <path d="M50 22l-9 9M50 22l9 9M50 78l-9-9M50 78l9-9M26 36l1 13M26 36l12-4M74 64l-1-13M74 64l-12 4M74 36l-12-4M74 36l-1 13M26 64l12 4M26 64l-1-13"/>
+
+    <div class="sticker s-shoe"><svg viewBox="0 0 100 100"><g class="cut">
+      <path d="M10 60c0-7 5-11 11-12l14-3 13-12c4-3 9-2 11 3l3 9c9 3 19 7 26 13 5 4 7 8 7 12 0 3-2 5-6 5H16c-4 0-6-2-6-6z" fill="#E8398B"/>
+      <path class="det" d="M10 70h85v5c0 3-2 5-6 5H16c-4 0-6-2-6-5z" fill="#FFF6E8"/>
+      <g class="det" stroke="#FFF6E8" stroke-width="4" fill="none" stroke-linecap="round">
+        <path d="M42 41l9 12M50 37l10 13M58 34l10 14"/>
       </g>
-      <g fill="none" stroke="#8FB4DE" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M50 8v84M14 29l72 42M86 29L14 71"/>
-        <path d="M50 22l-9 9M50 22l9 9M50 78l-9-9M50 78l9-9M26 36l1 13M26 36l12-4M74 64l-1-13M74 64l-12 4M74 36l-12-4M74 36l-1 13M26 64l12 4M26 64l-1-13"/>
-      </g>
-    </svg></div>
+    </g></svg></div>
+
     <div class="sticker s-eye"><svg viewBox="0 0 100 100"><g class="cut">
       <circle cx="50" cy="50" r="42" fill="#2E5FA3"/>
       <g class="det">
@@ -637,8 +652,8 @@
 
     <p class="line">Letztes Jahr: <span class="pink">du, ich, BUNT.</span></p>
     <p class="line">Und das war <span class="hl">erst der Anfang.</span></p>
-    <p class="line">Denn was letztes Jahr begonnen hat,</p>
-    <p class="line">geht heuer <span class="pink">weiter.</span></p>
+    <p class="line">Das Nächste, das wir zusammen machen,</p>
+    <p class="line">hat <span class="pink">keine Bühne.</span></p>
 
     <div class="sticker s-dice"><svg viewBox="0 0 100 100"><g class="cut">
       <rect x="10" y="10" width="80" height="80" rx="16" fill="#FFF6E8"/>
@@ -656,13 +671,13 @@
     </g></svg></div>
   </section>
 
-  <!-- ============ REVEAL ============ -->
+  <!-- ============ REVEAL: the bib ============ -->
   <section class="reveal">
-    <div class="sticker s-glass"><svg viewBox="0 0 100 100"><g class="cut">
-      <path d="M14 16h72L54 54v26h14v8H32v-8h14V54z" fill="#FFD6E4" stroke="#C98BA6" stroke-width="2.5"/>
-      <path class="det" d="M22 22h56L52 52h-4z" fill="#F58FB4" opacity=".85"/>
-      <circle class="det" cx="70" cy="26" r="7" fill="#C8E6A0"/>
+    <div class="sticker s-km"><svg viewBox="0 0 140 70"><g class="cut">
+      <rect x="4" y="4" width="132" height="62" rx="31" fill="#FFF6E8" stroke="#3E5C97" stroke-width="3"/>
+      <text x="70" y="47" text-anchor="middle" font-family="Georgia, serif" font-size="27" font-weight="700" fill="#3E5C97" letter-spacing="1">21,1 KM</text>
     </g></svg></div>
+
     <div class="sticker s-bfly2"><svg viewBox="0 0 100 100"><g class="cut">
       <path d="M50 50C38 22 14 20 12 38c-2 16 22 20 38 12z" fill="#A8C4E8"/>
       <path d="M50 50c12-28 36-30 38-12 2 16-22 20-38 12z" fill="#C4A7E7"/>
@@ -671,45 +686,53 @@
       <rect class="det" x="46" y="32" width="8" height="46" rx="4" fill="#6B3A5B"/>
     </g></svg></div>
 
-    <div class="ticket-wrap" id="ticketWrap">
-      <div class="tape tl"></div>
-      <div class="tape br"></div>
-      <div class="ticket">
-        <div class="ticket-top"></div>
-        <div class="ticket-main">
-          <div class="tk-eyebrow">Weekend Pass · 2 Tage</div>
-          <h2 class="tk-event">Snow Festival<br>Flachau</h2>
-          <div>
-            <div class="tk-date">Fr 04. — Sa 05. Dezember 2026</div>
-            <div class="tk-venue">Veranstaltungsgelände Flachau · Salzburg</div>
-          </div>
-          <div class="tk-grid">
-            <div><span>Gast</span><b>Hannah</b></div>
-            <div><span>Von</span><b>mir</b></div>
-            <div><span>Anlass</span><b>20. Geburtstag</b></div>
-            <div><span>Samstag</span><b class="act">Bunt.</b></div>
-          </div>
+    <div class="bib-stack" id="bibStack">
+      <div class="bib behind" aria-hidden="true">
+        <div class="bib-org">Sparkasse Halbmarathon<small>Salzburg 2027</small></div>
+        <div class="bib-num">21</div>
+        <div class="bib-name">Ich</div>
+        <div class="bib-chip"><div class="chip-bars"></div><div class="chip-code">Start 08:30</div></div>
+      </div>
+
+      <div class="bib">
+        <span class="pin tl"></span><span class="pin tr"></span>
+        <span class="pin bl"></span><span class="pin br"></span>
+        <div class="bib-org">Sparkasse Halbmarathon<small>Salzburg 2027</small></div>
+        <div class="bib-num">20</div>
+        <div class="bib-name">Hannah</div>
+        <div class="bib-meta">
+          <div><span>Datum</span><b>So 23. Mai 2027</b></div>
+          <div><span>Start</span><b>08:30 Uhr</b></div>
+          <div><span>Distanz</span><b>21,0975 km</b></div>
+          <div><span>Startbogen</span><b>Staatsbrücke</b></div>
         </div>
-        <div class="ticket-stub">
-          <div class="barcode" aria-hidden="true"></div>
-          <div class="stub-code">HNH · 20 · BUNT<br>2 Tage · 1 Berg</div>
+        <div class="bib-chip">
+          <div class="chip-bars" aria-hidden="true"></div>
+          <div class="chip-code">HNH · 20 · SBG<br>2 Startnummern</div>
         </div>
       </div>
     </div>
 
+    <p class="note" style="transform: rotate(1deg)">
+      <span class="kicker">Was da steht</span>
+      Zwei Startnummern. Einundzwanzig Kilometer quer durch Salzburg,
+      vom Startbogen auf der Staatsbrücke bis zurück in die Altstadt.
+      <b>Nebeneinander</b>, nicht gegeneinander.
+    </p>
+
     <div class="sticker s-star3"><svg viewBox="0 0 100 100"><g class="cut">
       <path d="M50 6l12 30 32 2-25 21 8 31-27-18-27 18 8-31L6 38l32-2z" fill="#FFD95C"/>
     </g></svg></div>
-    <div class="sticker s-flake2"><svg viewBox="0 0 100 100">
-      <g fill="none" stroke="#fff" stroke-width="16" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M50 8v84M14 29l72 42M86 29L14 71"/>
-        <path d="M50 22l-9 9M50 22l9 9M50 78l-9-9M50 78l9-9M26 36l1 13M26 36l12-4M74 64l-1-13M74 64l-12 4M74 36l-12-4M74 36l-1 13M26 64l12 4M26 64l-1-13"/>
+
+    <div class="sticker s-medal"><svg viewBox="0 0 100 100"><g class="cut">
+      <path d="M28 6l16 32h-14L16 6z" fill="#3E5C97"/>
+      <path d="M72 6L56 38h14L84 6z" fill="#A8C4E8"/>
+      <circle cx="50" cy="64" r="29" fill="#FFD95C"/>
+      <g class="det">
+        <circle cx="50" cy="64" r="21" fill="#F0BE33"/>
+        <path d="M50 49l4.5 9.6 10.5 1.5-7.5 7.4 1.8 10.5L50 73l-9.3 5 1.8-10.5-7.5-7.4 10.5-1.5z" fill="#FFF6E8"/>
       </g>
-      <g fill="none" stroke="#B48FDE" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M50 8v84M14 29l72 42M86 29L14 71"/>
-        <path d="M50 22l-9 9M50 22l9 9M50 78l-9-9M50 78l9-9M26 36l1 13M26 36l12-4M74 64l-1-13M74 64l-12 4M74 36l-12-4M74 36l-1 13M26 64l12 4M26 64l-1-13"/>
-      </g>
-    </svg></div>
+    </g></svg></div>
   </section>
 
   <!-- ============ COUNTDOWN ============ -->
@@ -718,7 +741,7 @@
       <path d="M50 86C22 66 8 52 8 34 8 20 18 12 30 12c8 0 16 4 20 12 4-8 12-12 20-12 12 0 22 8 22 22 0 18-14 32-42 52z" fill="#E8398B"/>
     </g></svg></div>
 
-    <div class="count-label">Bis Flachau</div>
+    <div class="count-label">Bis zum Startschuss</div>
     <div class="clock" id="clock">
       <div class="unit"><b id="d">—</b><span>Tage</span></div>
       <div class="unit"><b id="h">—</b><span>Std</span></div>
@@ -727,17 +750,18 @@
     </div>
 
     <figure class="polaroid">
-      <svg viewBox="0 0 100 100" role="img" aria-label="Gezeichnete Szene: Berg bei Nacht mit Discokugel">
-        <rect width="100" height="100" fill="#1B2A4A"/>
-        <circle cx="74" cy="22" r="10" fill="#E8E4DC"/>
-        <path d="M74 12v20M64 22h20M67 15l14 14M81 15L67 29" stroke="#A9AFBB" stroke-width="1.4"/>
-        <path d="M0 74l26-34 18 22 14-16 42 28v26H0z" fill="#33507F"/>
-        <path d="M26 40l10 12c-6 3-11 2-15-1zM58 46l7 8c-4 2-8 1-10-1z" fill="#F2F4F8"/>
-        <g fill="#FFD95C"><circle cx="14" cy="16" r="1.6"/><circle cx="34" cy="10" r="1.2"/><circle cx="50" cy="20" r="1.4"/><circle cx="90" cy="46" r="1.2"/><circle cx="8" cy="38" r="1.2"/></g>
-        <ellipse cx="50" cy="88" rx="30" ry="9" fill="#E8398B" opacity=".45"/>
-        <ellipse cx="50" cy="86" rx="18" ry="6" fill="#FFB3D1" opacity=".55"/>
+      <svg viewBox="0 0 100 100" role="img" aria-label="Gezeichnete Szene: Salzburg im Morgenlicht mit Festung">
+        <rect width="100" height="100" fill="#FFE0BE"/>
+        <circle cx="72" cy="26" r="11" fill="#FFD95C"/>
+        <path d="M0 66l20-16 12 8 16-18 18 14 14-10 20 16v40H0z" fill="#9FB3DC"/>
+        <g fill="#5E7099">
+          <path d="M34 44h28v10H34z"/><path d="M42 34h12v10H42z"/><path d="M46 27h4v7h-4z"/>
+        </g>
+        <path d="M0 80h100v20H0z" fill="#7392C9"/>
+        <path d="M0 84c14 3 28-3 42 0s30 4 58 0" stroke="#A9C0E8" stroke-width="2" fill="none"/>
+        <g fill="#E8398B"><circle cx="34" cy="92" r="3"/><circle cx="44" cy="93" r="3"/></g>
       </svg>
-      <figcaption>Flachau, Dez '26</figcaption>
+      <figcaption>Salzburg, Mai '27</figcaption>
     </figure>
 
     <div class="sticker s-flower"><svg viewBox="0 0 100 100"><g class="cut">
@@ -755,18 +779,39 @@
 
   <!-- ============ SMALL PRINT ============ -->
   <section class="note-wrap">
-    <div class="sticker s-ski"><svg viewBox="0 0 100 100"><g class="cut">
-      <path d="M28 88L20 24c0-6 3-9 7-9s7 3 7 9l-4 64z" fill="#E8398B"/>
-      <path d="M64 88L56 24c0-6 3-9 7-9s7 3 7 9l-4 64z" fill="#3E5C97"/>
-      <path d="M22 46h14M58 46h14" stroke="#FFF6E8" stroke-width="4"/>
-      <path d="M84 20v58M78 78h12" stroke="#6B3A5B" stroke-width="5" fill="none"/>
+    <div class="sticker s-watch"><svg viewBox="0 0 100 100"><g class="cut">
+      <rect x="42" y="2" width="16" height="11" rx="3" fill="#6B3A5B"/>
+      <circle cx="50" cy="56" r="36" fill="#FFD95C"/>
+      <g class="det">
+        <circle cx="50" cy="56" r="28" fill="#FFF6E8"/>
+        <path d="M50 36v20l13 9" stroke="#E8398B" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <circle cx="50" cy="56" r="4" fill="#2A2233"/>
+      </g>
     </g></svg></div>
 
     <div class="note">
       <span class="kicker">Das Kleingedruckte</span>
-      Diese Karte gilt <b>ab sofort</b>. Das echte Ticket hol ich im <b>September</b> —
-      der Vorverkauf für die 2-Tages-Pässe läuft schon.
-      Im Dezember stehen wir dann wieder in der Menge.
+      Die Anmeldung für 2027 ist <b>noch nicht offen</b>. Sobald sie aufgeht,
+      meld ich uns beide an. Bis dahin gilt diese Karte — und wir haben
+      neun Monate Zeit, so zu tun, als würden wir trainieren.
+    </div>
+  </section>
+
+  <!-- ============ THE ENCORE: BUNT. is not cancelled ============ -->
+  <section class="encore-wrap">
+    <div class="sticker s-disco2"><svg viewBox="0 0 100 100"><g class="cut">
+      <rect x="46" y="2" width="8" height="14" rx="2" fill="#9AA3B0"/>
+      <circle cx="50" cy="56" r="38" fill="#C7CDD6"/>
+      <path d="M12 56h76M50 18v76M22 30l56 52M78 30L22 82M16 40h68M16 72h68M34 20v72M66 20v72"
+            stroke="#8B93A1" stroke-width="2.2" fill="none" opacity=".85"/>
+      <circle class="det" cx="36" cy="42" r="7" fill="#EEF1F5" opacity=".9"/>
+    </g></svg></div>
+
+    <div class="note encore">
+      <span class="kicker">Und weil du jetzt fragst</span>
+      <b>BUNT.</b> ist nicht gestrichen, nur verschoben. Nächsten Sommer schauen
+      wir ihn uns wieder gemeinsam an — auf seiner richtigen Tour. München,
+      oder wo immer er dann spielt. Das ist dann Geschenk Nummer zwei.
     </div>
   </section>
 
@@ -799,7 +844,7 @@
 (function () {
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var lines = document.querySelectorAll(".line");
-  var wrap = document.getElementById("ticketWrap");
+  var bib = document.getElementById("bibStack");
 
   if ("IntersectionObserver" in window && !reduce) {
     var io = new IntersectionObserver(function (es) {
@@ -809,15 +854,15 @@
     }, { threshold: 0.6 });
     lines.forEach(function (el) { io.observe(el); });
 
-    var tio = new IntersectionObserver(function (es) {
+    var bio = new IntersectionObserver(function (es) {
       es.forEach(function (e) {
-        if (e.isIntersecting) { wrap.classList.add("in"); tio.disconnect(); }
+        if (e.isIntersecting) { bib.classList.add("in"); bio.disconnect(); }
       });
     }, { threshold: 0.3 });
-    tio.observe(wrap);
+    bio.observe(bib);
   } else {
     lines.forEach(function (el) { el.classList.add("in"); });
-    wrap.classList.add("in");
+    bib.classList.add("in");
   }
 
   var hint = document.getElementById("hint");
@@ -825,7 +870,8 @@
     if (window.scrollY > 50) hint.classList.add("gone");
   }, { passive: true });
 
-  var target = new Date("2026-12-04T18:00:00+01:00").getTime();
+  /* Sparkasse Halbmarathon Salzburg — Sun 23 May 2027, 08:30 CEST */
+  var target = new Date("2027-05-23T08:30:00+02:00").getTime();
   var d = document.getElementById("d"), h = document.getElementById("h"),
       m = document.getElementById("m"), s = document.getElementById("s");
   function pad(n) { return n < 10 ? "0" + n : "" + n; }
@@ -833,7 +879,7 @@
     var left = target - Date.now();
     if (left <= 0) {
       d.textContent = h.textContent = m.textContent = s.textContent = "00";
-      document.querySelector(".count-label").textContent = "Jetzt";
+      document.querySelector(".count-label").textContent = "Los";
       return;
     }
     var sec = Math.floor(left / 1000);
