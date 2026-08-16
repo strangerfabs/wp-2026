@@ -1,4 +1,4 @@
-<title>Der Pakt</title>
+<title>Ziel 2027</title>
 
 <style>
   :root {
@@ -17,7 +17,7 @@
 
     --ink:      #2A2233;
     --ink-soft: #7A6E85;
-    --rail-off: #D8D2DE;
+    --hair:     #E2DCE8;
 
     --f-type:   "American Typewriter", "Courier New", Georgia, serif;
     --f-didot:  "Didot", "Bodoni 72", Georgia, "Times New Roman", serif;
@@ -189,101 +189,169 @@
     50%      { transform: translateY(5px); opacity: .9; }
   }
 
-  /* ---------- the offer ---------- */
+  /* ---------- the goal ---------- */
 
-  .offer { gap: 2rem; padding-block: 22vh; }
-  .offer-line {
-    position: relative;
-    z-index: 2;
-    margin: 0;
-    max-width: 16ch;
-    font-family: var(--f-didot);
-    font-size: clamp(1.6rem, 7.6vw, 2.4rem);
-    line-height: 1.3;
-    text-wrap: balance;
-    opacity: 0;
-    transform: translateY(1.2rem);
-    transition: opacity .9s ease, transform .9s cubic-bezier(.22,.61,.36,1);
-  }
-  .offer-line.in { opacity: 1; transform: none; }
-  .offer-line .pink { color: var(--hot); font-style: italic; }
-  .offer-line .big {
-    display: block;
-    font-family: var(--f-black);
-    font-style: normal;
-    font-size: clamp(3.4rem, 20vw, 5rem);
-    line-height: .95;
-    letter-spacing: -.05em;
-    color: var(--hot);
-    margin-top: .2rem;
-  }
+  .goal { gap: .5rem; padding-block: 16vh 12vh; }
 
-  /* ---------- the pact ---------- */
-
-  .pact { gap: 1.1rem; padding-block: 8vh 12vh; }
-
-  .pact-head {
-    position: relative;
-    z-index: 2;
-    font-family: var(--f-black);
-    font-size: clamp(1.6rem, 8vw, 2.2rem);
-    letter-spacing: .04em;
-    text-transform: uppercase;
-    margin: 0 0 .3rem;
-  }
-  .pact-sub {
+  .goal-kicker {
     position: relative;
     z-index: 2;
     font-family: var(--f-mono);
-    font-size: .68rem;
-    letter-spacing: .16em;
+    font-size: .7rem;
+    letter-spacing: .22em;
     text-transform: uppercase;
     color: var(--ink-soft);
-    margin: 0 0 1rem;
+    margin: 0;
   }
+  .goal-num {
+    position: relative;
+    z-index: 2;
+    font-family: var(--f-black);
+    font-size: clamp(3rem, 17vw, 4.6rem);
+    line-height: .95;
+    letter-spacing: -.05em;
+    color: var(--hot);
+    margin: .2rem 0 0;
+    font-variant-numeric: tabular-nums;
+  }
+  .goal-sub {
+    position: relative;
+    z-index: 2;
+    font-family: var(--f-didot);
+    font-size: clamp(1.15rem, 5.4vw, 1.5rem);
+    line-height: 1.45;
+    max-width: 18ch;
+    margin: .9rem 0 0;
+    text-wrap: balance;
+  }
+  .goal-sub em { font-style: normal; color: var(--hot); }
 
-  .party {
+  /* ---------- bibs ---------- */
+
+  .bibs-wrap { gap: 1.2rem; padding-block: 4vh 10vh; }
+
+  .bibs {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: 20rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .bib {
+    position: relative;
+    width: 100%;
+    max-width: 15rem;
+    background: var(--paper-2);
+    border-radius: 5px;
+    padding: .85rem 1rem 0;
+    box-shadow: 0 10px 24px -8px rgba(42,34,51,.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .3rem;
+    overflow: hidden;
+    transform: rotate(-2deg);
+  }
+  .bib.two { transform: rotate(3deg); margin-top: -3rem; margin-left: 4.2rem; }
+  .bib-org {
+    font-family: var(--f-black);
+    font-size: .58rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--hot);
+    text-align: center;
+    line-height: 1.3;
+  }
+  .bib-org small {
+    display: block;
+    font-family: var(--f-mono);
+    font-size: .48rem;
+    font-weight: 400;
+    letter-spacing: .18em;
+    color: var(--ink-soft);
+  }
+  .bib-num {
+    font-family: var(--f-black);
+    font-size: 3rem;
+    line-height: .85;
+    letter-spacing: -.05em;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+  }
+  .bib-name {
+    font-family: var(--f-black);
+    font-size: .8rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--denim);
+  }
+  .bib-chip {
+    width: calc(100% + 2rem);
+    margin: .5rem -1rem 0;
+    padding: .38rem 1rem;
+    background: rgba(255,179,209,.18);
+    border-top: 1px solid rgba(42,34,51,.1);
+  }
+  .chip-bars {
+    height: 1rem;
+    background: repeating-linear-gradient(90deg,
+      var(--ink) 0 2px, transparent 2px 5px, var(--ink) 5px 6px, transparent 6px 10px);
+    opacity: .7;
+  }
+  .pin {
+    position: absolute;
+    width: .42rem; height: .42rem;
+    border-radius: 50%;
+    background: var(--paper);
+    box-shadow: inset 0 1px 2px rgba(42,34,51,.35);
+  }
+  .pin.tl { top: .38rem; left: .38rem; }
+  .pin.tr { top: .38rem; right: .38rem; }
+
+  /* ---------- how it works + count me in ---------- */
+
+  .deal { gap: .9rem; padding-block: 2vh 10vh; }
+
+  .deal-card {
     position: relative;
     z-index: 2;
     width: 100%;
-    max-width: 22rem;
+    max-width: 21rem;
     background: var(--cream);
     padding: 1.1rem 1.2rem 1.2rem;
     text-align: left;
     box-shadow: 0 4px 12px -4px rgba(42,34,51,.3);
+    transform: rotate(-1.2deg);
   }
-  .party.mine { transform: rotate(-1.2deg); }
-  .party.hers { transform: rotate(1.2deg); background: #FFF0F6; }
-
-  .party h3 {
+  .deal-card h2 {
     margin: 0 0 .8rem;
     font-family: var(--f-black);
-    font-size: .78rem;
+    font-size: .74rem;
     letter-spacing: .2em;
     text-transform: uppercase;
-    color: var(--hot);
+    color: var(--denim);
   }
-  .party.mine h3 { color: var(--denim); }
-
-  .party ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: .6rem; }
-  .party li {
+  .deal-card ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: .65rem; }
+  .deal-card li {
     font-family: var(--f-type);
-    font-size: .92rem;
+    font-size: .98rem;
     line-height: 1.45;
-    padding-left: 1.4rem;
+    padding-left: 1.5rem;
     position: relative;
   }
-  .party li::before {
+  .deal-card li::before {
     content: "";
     position: absolute;
     left: 0;
-    top: .45em;
-    width: .55rem;
-    height: .55rem;
+    top: .42em;
+    width: .6rem;
+    height: .6rem;
     border: 2px solid var(--ink-soft);
     border-radius: 2px;
+    transition: border-color .4s ease, background .4s ease;
   }
-  body.signed .party li::before {
+  body.signed .deal-card li::before {
     border-color: var(--hot);
     background:
       linear-gradient(45deg, transparent 42%, var(--hot) 42% 58%, transparent 58%),
@@ -293,25 +361,22 @@
   .sign-row {
     position: relative;
     z-index: 2;
-    margin-top: .6rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: .8rem;
-    min-height: 5.4rem;
+    min-height: 4.4rem;
     justify-content: center;
   }
-
   .sign-btn {
     font-family: var(--f-black);
-    font-size: .82rem;
+    font-size: .85rem;
     letter-spacing: .12em;
     text-transform: uppercase;
     color: #fff;
     background: var(--hot);
     border: none;
     border-radius: 999px;
-    padding: .95rem 1.6rem;
+    padding: .9rem 2.1rem;
     cursor: pointer;
     box-shadow: 0 4px 0 #B82A6E, 0 8px 14px -6px rgba(42,34,51,.5);
     transition: transform .12s ease, box-shadow .12s ease;
@@ -326,21 +391,21 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: .1rem;
+    gap: .05rem;
     border: 3px solid var(--red);
     color: var(--red);
-    padding: .5rem 1.1rem;
+    padding: .45rem 1.2rem;
     transform: rotate(-7deg);
     font-family: var(--f-black);
-    font-size: 1.05rem;
-    letter-spacing: .16em;
+    font-size: 1.1rem;
+    letter-spacing: .18em;
     text-transform: uppercase;
     opacity: .88;
     animation: thud .35s cubic-bezier(.3,1.6,.5,1);
   }
   .stamp small {
     font-family: var(--f-mono);
-    font-size: .58rem;
+    font-size: .55rem;
     letter-spacing: .1em;
     font-weight: 400;
   }
@@ -351,249 +416,120 @@
     100% { transform: rotate(-7deg) scale(1); opacity: .88; }
   }
 
-  /* ---------- the line: one rail, two units ---------- */
+  /* ---------- the empty results sheet ---------- */
 
-  .journey { padding-block: 2vh 10vh; }
+  .splits-wrap { gap: 1rem; padding-block: 2vh 10vh; }
 
-  .rail {
+  .splits {
     position: relative;
     z-index: 2;
     width: 100%;
-    max-width: 23rem;
-    padding-left: 2.4rem;
+    max-width: 20rem;
+    background: var(--paper-2);
+    padding: 1rem 1.1rem 1.1rem;
+    box-shadow: 0 4px 12px -4px rgba(42,34,51,.28);
+    transform: rotate(1deg);
     text-align: left;
-    display: flex;
-    flex-direction: column;
-    gap: 1.9rem;
   }
-  .rail::before {
-    content: "";
-    position: absolute;
-    left: .78rem;
-    top: .5rem;
-    bottom: .5rem;
-    width: .2rem;
-    background: var(--rail-off);
-    transition: background .8s ease;
+  .splits h2 {
+    margin: 0 0 .2rem;
+    font-family: var(--f-black);
+    font-size: .72rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--hot);
   }
-  body.signed .rail::before {
-    background: linear-gradient(180deg,
-      var(--hot) 0%, var(--butter) 28%, var(--mint) 52%, var(--sky) 74%, var(--denim) 100%);
-  }
-
-  .stop { position: relative; }
-  .stop::before {
-    content: "";
-    position: absolute;
-    left: -1.62rem;
-    top: .28rem;
-    width: 1rem;
-    height: 1rem;
-    border-radius: 50%;
-    background: var(--paper);
-    border: .2rem solid var(--rail-off);
-    transition: border-color .8s ease;
-  }
-  body.signed .stop::before { border-color: var(--hot); }
-
-  .stop-when {
+  .splits table { width: 100%; border-collapse: collapse; margin-top: .7rem; }
+  .splits th {
     font-family: var(--f-mono);
-    font-size: .62rem;
-    letter-spacing: .17em;
+    font-size: .55rem;
+    letter-spacing: .16em;
     text-transform: uppercase;
     color: var(--ink-soft);
+    text-align: left;
+    padding-bottom: .35rem;
+    font-weight: 400;
   }
-  .stop-what {
-    font-family: var(--f-type);
-    font-size: 1rem;
-    line-height: 1.5;
-    margin-top: .18rem;
-  }
-  .stop-what em { font-style: normal; color: var(--hot); }
-
-  /* the unit change: time becomes distance */
-  .gate {
-    background: var(--ink);
-    color: var(--cream);
-    border-radius: 6px;
-    padding: 1.2rem 1.1rem;
-    margin-left: -.6rem;
-    box-shadow: 0 8px 20px -8px rgba(42,34,51,.6);
-  }
-  .gate::before {
-    left: -1.02rem;
-    top: 1.5rem;
-    background: var(--butter);
-    border-color: var(--butter);
-  }
-  /* must out-specify body.signed .stop::before, or the gate dot loses its
-     colour and the unit change stops being marked */
-  body.signed .gate::before { border-color: var(--butter); }
-  .gate .stop-when { color: var(--butter); }
-  .gate .stop-what { color: var(--cream); }
-  .gate-title {
+  .splits th:last-child, .splits td:last-child { text-align: right; }
+  .splits td {
     font-family: var(--f-black);
-    font-size: 1.6rem;
+    font-size: .92rem;
+    padding: .5rem 0;
+    border-top: 1px solid var(--hair);
+    font-variant-numeric: tabular-nums;
+  }
+  .splits td.t {
+    font-family: var(--f-mono);
+    font-weight: 400;
+    color: var(--ink-soft);
     letter-spacing: .1em;
-    text-transform: uppercase;
-    margin: .2rem 0 .5rem;
+  }
+  .splits tr.edge td { color: var(--hot); }
+  .splits figcaption,
+  .splits .foot {
+    margin-top: .8rem;
+    font-family: var(--f-hand);
+    font-size: .95rem;
+    color: var(--denim);
   }
 
   .clock {
+    position: relative;
+    z-index: 2;
     display: flex;
     flex-wrap: wrap;
-    gap: .4rem;
-    margin-top: .9rem;
+    justify-content: center;
+    gap: .5rem;
   }
   .unit {
-    background: rgba(255,246,232,.12);
-    border-radius: 8px;
-    padding: .4rem .55rem;
+    background: var(--cream);
+    border-radius: 999px;
+    padding: .5rem .85rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: .05rem;
-    min-width: 3.4rem;
+    gap: .08rem;
+    box-shadow: 0 2px 4px rgba(42,34,51,.16);
+    min-width: 3.9rem;
   }
+  .unit:nth-child(1) { background: var(--bubble); transform: rotate(-3deg); }
+  .unit:nth-child(2) { background: var(--butter); transform: rotate(2deg); }
+  .unit:nth-child(3) { background: var(--sky);    transform: rotate(-2deg); }
+  .unit:nth-child(4) { background: var(--mint);   transform: rotate(3deg); }
   .unit b {
     font-family: var(--f-black);
-    font-size: 1.15rem;
+    font-size: clamp(1.25rem, 6vw, 1.7rem);
     line-height: 1;
-    letter-spacing: -.03em;
+    letter-spacing: -.04em;
     font-variant-numeric: tabular-nums;
-    color: var(--butter);
+    color: var(--ink);
   }
   .unit span {
     font-family: var(--f-mono);
-    font-size: .5rem;
-    letter-spacing: .14em;
-    text-transform: uppercase;
-    color: rgba(255,246,232,.6);
-  }
-
-  .km .stop-when { color: var(--denim); font-family: var(--f-black); font-size: .7rem; letter-spacing: .1em; }
-
-  /* ---------- the finish ---------- */
-
-  .finish { gap: 1.4rem; padding-block: 6vh 12vh; }
-
-  .finish-head {
-    position: relative;
-    z-index: 2;
-    font-family: var(--f-black);
-    font-size: clamp(2rem, 11vw, 3rem);
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    margin: 0;
-    background: repeating-linear-gradient(90deg, var(--ink) 0 10px, var(--cream) 10px 20px);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    -webkit-text-stroke: 1px var(--ink);
-  }
-
-  .bib {
-    position: relative;
-    z-index: 3;
-    width: 100%;
-    max-width: 15rem;
-    background: var(--paper-2);
-    border-radius: 5px;
-    padding: .9rem 1rem 0;
-    box-shadow: 0 10px 24px -8px rgba(42,34,51,.4);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: .35rem;
-    overflow: hidden;
-    transform: rotate(-2deg);
-  }
-  .bib.two { transform: rotate(3deg); margin-top: -3.2rem; margin-left: 3.4rem; }
-  .bib-org {
-    font-family: var(--f-black);
-    font-size: .6rem;
-    letter-spacing: .06em;
-    text-transform: uppercase;
-    color: var(--hot);
-    text-align: center;
-    line-height: 1.3;
-  }
-  .bib-org small {
-    display: block;
-    font-family: var(--f-mono);
-    font-size: .5rem;
-    font-weight: 400;
-    letter-spacing: .18em;
-    color: var(--ink-soft);
-  }
-  .bib-num {
-    font-family: var(--f-black);
-    font-size: 3.1rem;
-    line-height: .85;
-    letter-spacing: -.05em;
-    color: var(--ink);
-    font-variant-numeric: tabular-nums;
-  }
-  .bib-name {
-    font-family: var(--f-black);
-    font-size: .85rem;
+    font-size: .52rem;
     letter-spacing: .16em;
     text-transform: uppercase;
-    color: var(--denim);
+    color: rgba(42,34,51,.65);
   }
-  .bib-chip {
-    width: calc(100% + 2rem);
-    margin: .55rem -1rem 0;
-    padding: .4rem 1rem;
-    background: rgba(255,179,209,.18);
-    border-top: 1px solid rgba(42,34,51,.1);
-  }
-  .chip-bars {
-    height: 1.05rem;
-    background: repeating-linear-gradient(90deg,
-      var(--ink) 0 2px, transparent 2px 5px, var(--ink) 5px 6px, transparent 6px 10px);
-    opacity: .7;
-  }
-  .pin {
-    position: absolute;
-    width: .45rem; height: .45rem;
-    border-radius: 50%;
-    background: var(--paper);
-    box-shadow: inset 0 1px 2px rgba(42,34,51,.35);
-  }
-  .pin.tl { top: .4rem; left: .4rem; }
-  .pin.tr { top: .4rem; right: .4rem; }
 
-  .bibs { position: relative; z-index: 3; width: 100%; max-width: 20rem; display: flex; flex-direction: column; }
+  /* ---------- the reward ---------- */
 
-  /* ---------- notes ---------- */
+  .reward { gap: 1rem; padding-block: 2vh 10vh; }
 
-  .note {
+  .reward-card {
     position: relative;
     z-index: 2;
     background: var(--cream);
-    padding: 1.1rem 1.2rem;
-    max-width: 20rem;
-    transform: rotate(-1.5deg);
+    padding: 1.5rem 1.2rem 1.2rem;
+    max-width: 21rem;
+    transform: rotate(1.4deg);
     box-shadow: 0 4px 10px -3px rgba(42,34,51,.3);
     font-family: var(--f-type);
-    font-size: .92rem;
-    line-height: 1.6;
+    font-size: .98rem;
+    line-height: 1.55;
     text-align: left;
-    color: var(--ink);
   }
-  .note b { color: var(--hot); }
-  .note .kicker {
-    display: block;
-    font-family: var(--f-mono);
-    font-size: .58rem;
-    letter-spacing: .18em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    margin-bottom: .5rem;
-  }
-  .note.encore { transform: rotate(1.5deg); padding-top: 1.4rem; }
-  .note.encore::before {
+  .reward-card::before {
     content: "";
     position: absolute;
     top: 0; left: 0; right: 0;
@@ -602,14 +538,23 @@
       var(--hot) 0 14px, var(--butter) 14px 28px,
       var(--denim) 28px 42px, var(--mint) 42px 56px);
   }
-  .encore-wrap { padding-block: 4vh 8vh; }
+  .reward-card .kicker {
+    display: block;
+    font-family: var(--f-mono);
+    font-size: .58rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: .45rem;
+  }
+  .reward-card b { color: var(--hot); }
 
   /* ---------- close ---------- */
 
   .close {
     min-height: 62svh;
     justify-content: center;
-    gap: 1.5rem;
+    gap: 1.4rem;
     padding-block: 6vh 12vh;
   }
   .close-line {
@@ -643,32 +588,29 @@
   .s-disco  { width: 24%; top: 4%;  right: 4%;  }
   .s-bfly1  { width: 17%; top: 15%; left: 2%;   transform: rotate(12deg); }
   .s-star1  { width: 13%; bottom: 22%; left: 5%; transform: rotate(-10deg); }
-  .s-star2  { width: 10%; bottom: 30%; right: 8%; transform: rotate(14deg); }
   .s-shoe   { width: 22%; bottom: 10%; right: 4%; transform: rotate(8deg); }
   .s-eye    { width: 13%; bottom: 8%;  left: 8%;  transform: rotate(-6deg); }
 
-  .s-tulip  { width: 24%; top: 8%;  left: 3%;   transform: rotate(-7deg); }
-  .s-watch  { width: 20%; bottom: 10%; right: 4%; transform: rotate(9deg); }
+  .s-tulip  { width: 23%; top: 6%;  left: 3%;   transform: rotate(-7deg); }
+  .s-star2  { width: 12%; bottom: 12%; right: 6%; transform: rotate(14deg); }
 
-  .s-xoxo   { width: 26%; top: 2%;  right: 2%;  transform: rotate(9deg); }
-  .s-dice   { width: 14%; bottom: 4%; left: 4%; transform: rotate(-12deg); }
+  .s-medal  { width: 19%; top: 2%;  right: 4%;  transform: rotate(-10deg); }
+  .s-km     { width: 25%; bottom: 4%; left: 3%;  transform: rotate(-9deg); }
 
-  .s-medal  { width: 20%; top: 4%;  right: 5%;  transform: rotate(-10deg); }
-  .s-km     { width: 26%; bottom: 5%; left: 3%;  transform: rotate(-9deg); }
-  .s-flower { width: 18%; bottom: 6%; right: 6%; transform: rotate(8deg); }
+  .s-watch  { width: 18%; bottom: 6%; right: 5%; transform: rotate(9deg); }
+  .s-dice   { width: 14%; top: 3%;  right: 6%;  transform: rotate(-12deg); }
 
-  .s-disco2 { width: 17%; top: 1%;  right: 6%;  transform: rotate(10deg); z-index: 3; }
+  .s-disco2 { width: 16%; top: -1%; right: 7%;  transform: rotate(10deg); z-index: 3; }
 
   .s-bfly3  { width: 15%; top: 6%;  right: 7%;  transform: rotate(14deg); }
   .s-lips2  { width: 16%; bottom: 9%; left: 7%; transform: rotate(9deg); }
-  .s-heart  { width: 13%; top: 8%;  left: 6%;   transform: rotate(-11deg); }
+  .s-flower { width: 15%; top: 10%; left: 5%;   transform: rotate(-9deg); }
 
   @media (max-width: 359px) {
-    .s-bfly1, .s-star2, .s-eye, .s-dice, .s-heart { display: none; }
+    .s-bfly1, .s-eye, .s-dice, .s-star2 { display: none; }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .offer-line { opacity: 1; transform: none; transition: none; }
     .hint::after, .stamp { animation: none; }
   }
 </style>
@@ -726,9 +668,6 @@
     <div class="sticker s-star1"><svg viewBox="0 0 100 100"><g class="cut">
       <path d="M50 6l12 30 32 2-25 21 8 31-27-18-27 18 8-31L6 38l32-2z" fill="#3E5C97"/>
     </g></svg></div>
-    <div class="sticker s-star2"><svg viewBox="0 0 100 100"><g class="cut">
-      <path d="M50 6l12 30 32 2-25 21 8 31-27-18-27 18 8-31L6 38l32-2z" fill="#E8398B"/>
-    </g></svg></div>
     <div class="sticker s-shoe"><svg viewBox="0 0 100 100"><g class="cut">
       <path d="M10 60c0-7 5-11 11-12l14-3 13-12c4-3 9-2 11 3l3 9c9 3 19 7 26 13 5 4 7 8 7 12 0 3-2 5-6 5H16c-4 0-6-2-6-6z" fill="#E8398B"/>
       <path class="det" d="M10 70h85v5c0 3-2 5-6 5H16c-4 0-6-2-6-5z" fill="#FFF6E8"/>
@@ -748,8 +687,8 @@
     <div class="hint" id="hint">Scroll</div>
   </section>
 
-  <!-- ============ THE OFFER ============ -->
-  <section class="offer">
+  <!-- ============ THE GOAL ============ -->
+  <section class="goal">
     <div class="sticker s-tulip"><svg viewBox="0 0 100 100"><g class="cut">
       <path d="M50 92V44M50 60c-12-4-20-14-22-26M50 60c12-4 20-14 22-26" stroke="#4E8C5A" stroke-width="5" fill="none"/>
       <path d="M30 20c0-8 6-12 10-12s10 4 10 12v14c0 6-4 10-10 10s-10-4-10-10z" fill="#E8398B"/>
@@ -757,153 +696,17 @@
       <path d="M40 34c0-8 6-12 10-12s10 4 10 12v14c0 6-4 10-10 10s-10-4-10-10z" fill="#F2708A"/>
     </g></svg></div>
 
-    <p class="offer-line">Ich schenke dir <span class="pink">keine Karte.</span></p>
-    <p class="offer-line">Ich schenke dir<span class="big">279 Tage</span></p>
-    <p class="offer-line">und am Ende <span class="pink">21,0975 Kilometer.</span></p>
+    <p class="goal-kicker">Unser Ziel 2027</p>
+    <p class="goal-num">21,0975 km</p>
+    <p class="goal-sub">Salzburger Halbmarathon, 23. Mai. <em>Du und ich.</em></p>
 
-    <div class="sticker s-watch"><svg viewBox="0 0 100 100"><g class="cut">
-      <rect x="42" y="2" width="16" height="11" rx="3" fill="#6B3A5B"/>
-      <circle cx="50" cy="56" r="36" fill="#FFD95C"/>
-      <g class="det">
-        <circle cx="50" cy="56" r="28" fill="#FFF6E8"/>
-        <path d="M50 36v20l13 9" stroke="#E8398B" stroke-width="5" fill="none" stroke-linecap="round"/>
-        <circle cx="50" cy="56" r="4" fill="#2A2233"/>
-      </g>
+    <div class="sticker s-star2"><svg viewBox="0 0 100 100"><g class="cut">
+      <path d="M50 6l12 30 32 2-25 21 8 31-27-18-27 18 8-31L6 38l32-2z" fill="#E8398B"/>
     </g></svg></div>
   </section>
 
-  <!-- ============ THE PACT ============ -->
-  <section class="pact">
-    <div class="sticker s-xoxo"><svg viewBox="0 0 140 70"><g class="cut">
-      <rect x="4" y="4" width="132" height="62" rx="31" fill="#FFF6E8" stroke="#D62246" stroke-width="3"/>
-      <text x="70" y="48" text-anchor="middle" font-family="Georgia, serif" font-size="34" font-weight="700" fill="#D62246" letter-spacing="2">XOXO</text>
-    </g></svg></div>
-
-    <h2 class="pact-head">Der Pakt</h2>
-    <p class="pact-sub">Salzburg · 23. Mai 2027 · 21,0975 km</p>
-
-    <div class="party mine">
-      <h3>Ich verpflichte mich</h3>
-      <ul>
-        <li>Ich melde uns beide an, sobald die Anmeldung aufgeht, und zahle beide Startgelder.</li>
-        <li>Ich laufe jeden Sonntag mit dir. Auch bei Regen. Auch im Jänner.</li>
-        <li>Ich laufe nie schneller, als du gerade kannst.</li>
-        <li>Ich sag kein einziges Mal „hab ich dir doch gesagt".</li>
-      </ul>
-    </div>
-
-    <div class="party hers">
-      <h3>Du verpflichtest dich</h3>
-      <ul>
-        <li>Du darfst jammern. Unbegrenzt. Das ist ausdrücklich erlaubt.</li>
-        <li>Du sagst mir, wenn du nicht mehr magst — aber frühestens ab Kilometer fünf.</li>
-        <li>Du gibst nicht auf, nur weil es schüttet.</li>
-        <li>Du läufst mit mir ins Ziel. Nicht vor mir.</li>
-      </ul>
-    </div>
-
-    <div class="sign-row">
-      <button class="sign-btn" id="signBtn" type="button">Tippen zum Unterschreiben</button>
-      <div class="stamp" id="stamp" hidden>Unterschrieben<small id="stampDate"></small></div>
-    </div>
-
-    <div class="sticker s-dice"><svg viewBox="0 0 100 100"><g class="cut">
-      <rect x="10" y="10" width="80" height="80" rx="16" fill="#FFF6E8"/>
-      <g class="det" fill="#D62246">
-        <circle cx="32" cy="32" r="8"/><circle cx="68" cy="32" r="8"/>
-        <circle cx="50" cy="50" r="8"/>
-        <circle cx="32" cy="68" r="8"/><circle cx="68" cy="68" r="8"/>
-      </g>
-    </g></svg></div>
-  </section>
-
-  <!-- ============ ONE LINE: time, then distance ============ -->
-  <section class="journey">
-    <div class="rail">
-
-      <div class="stop">
-        <div class="stop-when">Heute · 15. August 2026</div>
-        <div class="stop-what">Der Pakt steht. Ab hier zählen wir runter.</div>
-      </div>
-
-      <div class="stop">
-        <div class="stop-when">Ein Sonntag im September</div>
-        <div class="stop-what">Erster gemeinsamer Lauf. Kurz, langsam, unwürdig. <em>Zählt trotzdem.</em></div>
-      </div>
-
-      <div class="stop">
-        <div class="stop-when">Sobald die Anmeldung aufgeht</div>
-        <div class="stop-what">Zwei Startplätze. Ich zahl, du bist dabei — dann gibt's kein Zurück mehr.</div>
-      </div>
-
-      <div class="stop">
-        <div class="stop-when">Jänner 2027</div>
-        <div class="stop-what">Der Monat, in dem wir beide keine Lust haben. Wir laufen trotzdem.</div>
-      </div>
-
-      <div class="stop">
-        <div class="stop-when">Februar 2027</div>
-        <div class="stop-what">Erste zehn Kilometer am Stück. <em>Die halbe Miete.</em></div>
-      </div>
-
-      <div class="stop">
-        <div class="stop-when">April 2027</div>
-        <div class="stop-what">Generalprobe. Achtzehn Kilometer. Danach weißt du, dass du es kannst.</div>
-      </div>
-
-      <div class="stop">
-        <div class="stop-when">Samstag, 22. Mai 2027</div>
-        <div class="stop-what">Anreise Salzburg. Startnummern abholen. Nervös sein.</div>
-      </div>
-
-      <!-- the unit changes here -->
-      <div class="stop gate">
-        <div class="stop-when">Sonntag, 23. Mai 2027 · 08:30</div>
-        <div class="gate-title">Startschuss</div>
-        <div class="stop-what">Staatsbrücke. Ab hier zählen wir keine Tage mehr, sondern Kilometer.</div>
-        <div class="clock" id="clock">
-          <div class="unit"><b id="d">—</b><span>Tage</span></div>
-          <div class="unit"><b id="h">—</b><span>Std</span></div>
-          <div class="unit"><b id="m">—</b><span>Min</span></div>
-          <div class="unit"><b id="s">—</b><span>Sek</span></div>
-        </div>
-      </div>
-
-      <div class="stop km">
-        <div class="stop-when">Kilometer 1</div>
-        <div class="stop-what">Viel zu schnell losgelaufen. Machen alle.</div>
-      </div>
-
-      <div class="stop km">
-        <div class="stop-when">Kilometer 5</div>
-        <div class="stop-what">Ab hier darfst du laut Pakt zum ersten Mal sagen, dass du nicht mehr magst.</div>
-      </div>
-
-      <div class="stop km">
-        <div class="stop-when">Kilometer 10,5</div>
-        <div class="stop-what">Halbzeit. <em>Hier würdest du sonst umdrehen.</em></div>
-      </div>
-
-      <div class="stop km">
-        <div class="stop-when">Kilometer 15</div>
-        <div class="stop-what">Der Teil, den keiner mag. Ich rede dich da durch.</div>
-      </div>
-
-      <div class="stop km">
-        <div class="stop-when">Kilometer 19</div>
-        <div class="stop-what">Es sind nur noch zwei. <em>Zwei.</em></div>
-      </div>
-
-      <div class="stop km">
-        <div class="stop-when">Kilometer 21,0975</div>
-        <div class="stop-what">Ziel. Wir laufen nebeneinander rein, so steht's im Pakt.</div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ============ THE FINISH ============ -->
-  <section class="finish">
+  <!-- ============ BIBS ============ -->
+  <section class="bibs-wrap">
     <div class="sticker s-medal"><svg viewBox="0 0 100 100"><g class="cut">
       <path d="M28 6l16 32h-14L16 6z" fill="#3E5C97"/>
       <path d="M72 6L56 38h14L84 6z" fill="#A8C4E8"/>
@@ -913,8 +716,6 @@
         <path d="M50 49l4.5 9.6 10.5 1.5-7.5 7.4 1.8 10.5L50 73l-9.3 5 1.8-10.5-7.5-7.4 10.5-1.5z" fill="#FFF6E8"/>
       </g>
     </g></svg></div>
-
-    <h2 class="finish-head">Ziel</h2>
 
     <div class="bibs">
       <div class="bib">
@@ -933,16 +734,83 @@
       </div>
     </div>
 
-    <p class="note" style="transform: rotate(1deg)">
-      <span class="kicker">Was dann passiert</span>
-      Zwei Medaillen, zwei ruinierte Beine und ein Frühstück, das wir uns
-      dann wirklich verdient haben. <b>Das ist das Geschenk.</b> Nicht die
-      Startnummer — die 279 Tage davor.
-    </p>
-
     <div class="sticker s-km"><svg viewBox="0 0 140 70"><g class="cut">
       <rect x="4" y="4" width="132" height="62" rx="31" fill="#FFF6E8" stroke="#3E5C97" stroke-width="3"/>
       <text x="70" y="47" text-anchor="middle" font-family="Georgia, serif" font-size="27" font-weight="700" fill="#3E5C97" letter-spacing="1">21,1 KM</text>
+    </g></svg></div>
+  </section>
+
+  <!-- ============ THE DEAL ============ -->
+  <section class="deal">
+    <div class="sticker s-dice"><svg viewBox="0 0 100 100"><g class="cut">
+      <rect x="10" y="10" width="80" height="80" rx="16" fill="#FFF6E8"/>
+      <g class="det" fill="#D62246">
+        <circle cx="32" cy="32" r="8"/><circle cx="68" cy="32" r="8"/>
+        <circle cx="50" cy="50" r="8"/>
+        <circle cx="32" cy="68" r="8"/><circle cx="68" cy="68" r="8"/>
+      </g>
+    </g></svg></div>
+
+    <div class="deal-card">
+      <h2>Wie das läuft</h2>
+      <ul>
+        <li>Wir trainieren zusammen. Sonntags. Auch im Jänner.</li>
+        <li>Jammern ist erlaubt. Aufgeben nicht.</li>
+        <li>Wir laufen nebeneinander ins Ziel.</li>
+      </ul>
+    </div>
+
+    <div class="sign-row">
+      <button class="sign-btn" id="signBtn" type="button">Bin dabei</button>
+      <div class="stamp" id="stamp" hidden>Dabei<small id="stampDate"></small></div>
+    </div>
+
+    <div class="sticker s-watch"><svg viewBox="0 0 100 100"><g class="cut">
+      <rect x="42" y="2" width="16" height="11" rx="3" fill="#6B3A5B"/>
+      <circle cx="50" cy="56" r="36" fill="#FFD95C"/>
+      <g class="det">
+        <circle cx="50" cy="56" r="28" fill="#FFF6E8"/>
+        <path d="M50 36v20l13 9" stroke="#E8398B" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <circle cx="50" cy="56" r="4" fill="#2A2233"/>
+      </g>
+    </g></svg></div>
+  </section>
+
+  <!-- ============ EMPTY RESULTS SHEET + COUNTDOWN ============ -->
+  <section class="splits-wrap">
+    <div class="splits">
+      <h2>Zwischenzeiten</h2>
+      <table>
+        <thead>
+          <tr><th scope="col">Punkt</th><th scope="col">Zeit</th></tr>
+        </thead>
+        <tbody>
+          <tr class="edge"><td>Start</td><td class="t">—:—:—</td></tr>
+          <tr><td>km 5</td><td class="t">—:—:—</td></tr>
+          <tr><td>km 10,5</td><td class="t">—:—:—</td></tr>
+          <tr><td>km 15</td><td class="t">—:—:—</td></tr>
+          <tr class="edge"><td>Ziel</td><td class="t">—:—:—</td></tr>
+        </tbody>
+      </table>
+      <p class="foot">Füllen wir am 23. Mai aus.</p>
+    </div>
+
+    <div class="clock" id="clock">
+      <div class="unit"><b id="d">—</b><span>Tage</span></div>
+      <div class="unit"><b id="h">—</b><span>Std</span></div>
+      <div class="unit"><b id="m">—</b><span>Min</span></div>
+      <div class="unit"><b id="s">—</b><span>Sek</span></div>
+    </div>
+  </section>
+
+  <!-- ============ THE REWARD ============ -->
+  <section class="reward">
+    <div class="sticker s-disco2"><svg viewBox="0 0 100 100"><g class="cut">
+      <rect x="46" y="2" width="8" height="14" rx="2" fill="#9AA3B0"/>
+      <circle cx="50" cy="56" r="38" fill="#C7CDD6"/>
+      <path d="M12 56h76M50 18v76M22 30l56 52M78 30L22 82M16 40h68M16 72h68M34 20v72M66 20v72"
+            stroke="#8B93A1" stroke-width="2.2" fill="none" opacity=".85"/>
+      <circle class="det" cx="36" cy="42" r="7" fill="#EEF1F5" opacity=".9"/>
     </g></svg></div>
     <div class="sticker s-flower"><svg viewBox="0 0 100 100"><g class="cut">
       <g fill="#FFB3D1">
@@ -955,23 +823,11 @@
         <circle cx="50" cy="50" r="6" fill="#FFD95C"/>
       </g>
     </g></svg></div>
-  </section>
 
-  <!-- ============ THE ENCORE ============ -->
-  <section class="encore-wrap">
-    <div class="sticker s-disco2"><svg viewBox="0 0 100 100"><g class="cut">
-      <rect x="46" y="2" width="8" height="14" rx="2" fill="#9AA3B0"/>
-      <circle cx="50" cy="56" r="38" fill="#C7CDD6"/>
-      <path d="M12 56h76M50 18v76M22 30l56 52M78 30L22 82M16 40h68M16 72h68M34 20v72M66 20v72"
-            stroke="#8B93A1" stroke-width="2.2" fill="none" opacity=".85"/>
-      <circle class="det" cx="36" cy="42" r="7" fill="#EEF1F5" opacity=".9"/>
-    </g></svg></div>
-
-    <div class="note encore">
-      <span class="kicker">Und weil du jetzt fragst</span>
-      <b>BUNT.</b> ist nicht gestrichen, nur verschoben. Im Sommer danach schauen
-      wir ihn uns wieder gemeinsam an — auf seiner richtigen Tour. München,
-      oder wo immer er dann spielt. Betrachte das als Zielprämie.
+    <div class="reward-card">
+      <span class="kicker">Und die Belohnung</span>
+      Im Sommer drauf gehen wir wieder auf <b>BUNT.</b> — auf seiner richtigen
+      Tour. München, oder wo er dann halt spielt. Ausgemacht ist ausgemacht.
     </div>
   </section>
 
@@ -983,9 +839,6 @@
       <path d="M50 50C40 76 20 82 18 68c-2-12 20-22 32-18z" fill="#C4A7E7"/>
       <path d="M50 50c10 26 30 32 32 18 2-12-20-22-32-18z" fill="#A8C4E8"/>
       <rect class="det" x="46" y="32" width="8" height="46" rx="4" fill="#6B3A5B"/>
-    </g></svg></div>
-    <div class="sticker s-heart"><svg viewBox="0 0 100 100"><g class="cut">
-      <path d="M50 86C22 66 8 52 8 34 8 20 18 12 30 12c8 0 16 4 20 12 4-8 12-12 20-12 12 0 22 8 22 22 0 18-14 32-42 52z" fill="#E8398B"/>
     </g></svg></div>
     <div class="sticker s-lips2"><svg viewBox="0 0 100 100"><g class="cut">
       <path d="M50 34c8-12 26-16 34-6 6 8-2 14-8 16 8 0 12 6 8 12-8 12-24 20-34 20S22 68 14 56c-4-6 0-12 8-12-6-2-14-8-8-16 8-10 26-6 36 6z" fill="#D62246"/>
@@ -1005,34 +858,17 @@
 
 <script>
 (function () {
-  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  /* ---- the offer lines fade in ---- */
-  var lines = document.querySelectorAll(".offer-line");
-  if ("IntersectionObserver" in window && !reduce) {
-    var io = new IntersectionObserver(function (es) {
-      es.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
-      });
-    }, { threshold: 0.6 });
-    lines.forEach(function (el) { io.observe(el); });
-  } else {
-    lines.forEach(function (el) { el.classList.add("in"); });
-  }
-
-  /* ---- signing the pact ---- */
   var btn = document.getElementById("signBtn");
   var stamp = document.getElementById("stamp");
   var stampDate = document.getElementById("stampDate");
-  var KEY = "pakt-unterschrieben";
+  var KEY = "ziel-2027-dabei";
 
-  function applySignature(dateText) {
+  function apply(dateText) {
     document.body.classList.add("signed");
     stampDate.textContent = dateText;
     stamp.hidden = false;
     btn.hidden = true;
   }
-
   function today() {
     var n = new Date();
     return ("0" + n.getDate()).slice(-2) + "." + ("0" + (n.getMonth() + 1)).slice(-2) + "." + n.getFullYear();
@@ -1040,31 +876,27 @@
 
   var stored = null;
   try { stored = window.localStorage.getItem(KEY); } catch (e) { /* storage blocked — fine */ }
-  if (stored) applySignature(stored);
+  if (stored) apply(stored);
 
   btn.addEventListener("click", function () {
     var d = today();
-    applySignature(d);
-    try { window.localStorage.setItem(KEY, d); } catch (e) { /* not persisted, still signed */ }
+    apply(d);
+    try { window.localStorage.setItem(KEY, d); } catch (e) { /* not persisted, still marked */ }
   });
 
-  /* ---- scroll hint ---- */
   var hint = document.getElementById("hint");
   window.addEventListener("scroll", function () {
     if (window.scrollY > 50) hint.classList.add("gone");
   }, { passive: true });
 
-  /* ---- countdown: Sparkasse Halbmarathon Salzburg, Sun 23 May 2027, 08:30 CEST ---- */
+  /* Sparkasse Halbmarathon Salzburg — Sun 23 May 2027, 08:30 CEST */
   var target = new Date("2027-05-23T08:30:00+02:00").getTime();
   var d = document.getElementById("d"), h = document.getElementById("h"),
       m = document.getElementById("m"), s = document.getElementById("s");
   function pad(n) { return n < 10 ? "0" + n : "" + n; }
   function tick() {
     var left = target - Date.now();
-    if (left <= 0) {
-      d.textContent = h.textContent = m.textContent = s.textContent = "00";
-      return;
-    }
+    if (left <= 0) { d.textContent = h.textContent = m.textContent = s.textContent = "00"; return; }
     var sec = Math.floor(left / 1000);
     d.textContent = Math.floor(sec / 86400);
     h.textContent = pad(Math.floor(sec / 3600) % 24);
