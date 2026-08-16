@@ -27,7 +27,6 @@
 
     --ink:      #2A2233;
     --ink-soft: #7A6E85;
-    --hair:     #E2DCE8;
 
     --f-type:   "American Typewriter", "Courier New", Georgia, serif;
     --f-didot:  "Didot", "Bodoni 72", Georgia, "Times New Roman", serif;
@@ -67,6 +66,15 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+  }
+
+  #confetti {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 50;
   }
 
   /* ---------- stickers ---------- */
@@ -199,9 +207,9 @@
     50%      { transform: translateY(5px); opacity: .9; }
   }
 
-  /* ---------- the goal ---------- */
+  /* ---------- the shared goal ---------- */
 
-  .goal { gap: .5rem; padding-block: 16vh 12vh; }
+  .goal { gap: .5rem; padding-block: 16vh 10vh; }
 
   .goal-kicker {
     position: relative;
@@ -225,56 +233,52 @@
     font-variant-numeric: tabular-nums;
     white-space: nowrap;   /* "km" must never drop to its own line */
   }
-  .goal-num .u {
-    font-size: .44em;
-    letter-spacing: 0;
-    margin-left: .14em;
-  }
+  .goal-num .u { font-size: .44em; letter-spacing: 0; margin-left: .14em; }
   .goal-sub {
     position: relative;
     z-index: 2;
     font-family: var(--f-didot);
     font-size: clamp(1.15rem, 5.4vw, 1.5rem);
     line-height: 1.45;
-    max-width: 18ch;
+    max-width: 20ch;
     margin: .9rem 0 0;
     text-wrap: balance;
   }
   .goal-sub em { font-style: normal; color: var(--hot); }
 
-  /* ---------- bibs ---------- */
+  /* ---------- one big bib ---------- */
 
-  .bibs-wrap { gap: 1.2rem; padding-block: 4vh 10vh; }
+  .bib-wrap { gap: 1.6rem; padding-block: 2vh 12vh; }
 
-  .bibs {
+  .bib {
     position: relative;
     z-index: 3;
     width: 100%;
-    max-width: 20rem;
-    display: flex;
-    flex-direction: column;
-  }
-  .bib {
-    position: relative;
-    width: 100%;
-    max-width: 15rem;
+    max-width: 19rem;
     background: var(--paper-2);
-    border-radius: 5px;
-    padding: .85rem 1rem 0;
-    box-shadow: 0 10px 24px -8px rgba(42,34,51,.4);
+    border-radius: 6px;
+    padding: 1.2rem 1.2rem 0;
+    box-shadow: 0 12px 28px -10px rgba(42,34,51,.45);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: .3rem;
+    gap: .45rem;
     overflow: hidden;
-    transform: rotate(-2deg);
+    transform: rotate(-1.5deg);
+    transition: transform .35s cubic-bezier(.34,1.6,.5,1);
   }
-  /* overlap only the first bib's barcode strip, never its name */
-  .bib.two { transform: rotate(3deg); margin-top: -1rem; margin-left: 4.5rem; }
+  body.signed .bib { animation: pop .55s cubic-bezier(.34,1.6,.5,1); }
+  @keyframes pop {
+    0%   { transform: rotate(-1.5deg) scale(1); }
+    35%  { transform: rotate(2.5deg) scale(1.06); }
+    70%  { transform: rotate(-3deg) scale(1.02); }
+    100% { transform: rotate(-1.5deg) scale(1); }
+  }
+
   .bib-org {
     font-family: var(--f-black);
-    font-size: .58rem;
-    letter-spacing: .06em;
+    font-size: .68rem;
+    letter-spacing: .05em;
     text-transform: uppercase;
     color: var(--hot);
     text-align: center;
@@ -283,117 +287,85 @@
   .bib-org small {
     display: block;
     font-family: var(--f-mono);
-    font-size: .48rem;
+    font-size: .54rem;
     font-weight: 400;
-    letter-spacing: .18em;
+    letter-spacing: .2em;
     color: var(--ink-soft);
+    margin-top: .18rem;
   }
   .bib-num {
     font-family: var(--f-black);
-    font-size: 3rem;
-    line-height: .85;
+    font-size: clamp(4.4rem, 26vw, 6rem);
+    line-height: .82;
     letter-spacing: -.05em;
     color: var(--ink);
     font-variant-numeric: tabular-nums;
   }
   .bib-name {
     font-family: var(--f-black);
-    font-size: .8rem;
-    letter-spacing: .16em;
+    font-size: 1.2rem;
+    letter-spacing: .18em;
     text-transform: uppercase;
     color: var(--denim);
   }
+  .bib-meta {
+    width: 100%;
+    border-top: 1.5px dashed rgba(42,34,51,.2);
+    margin-top: .4rem;
+    padding-top: .7rem;
+    display: flex;
+    justify-content: space-between;
+    gap: .8rem;
+    font-family: var(--f-mono);
+    font-size: .62rem;
+    letter-spacing: .08em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+  }
   .bib-chip {
-    width: calc(100% + 2rem);
-    margin: .5rem -1rem 0;
-    padding: .38rem 1rem;
+    width: calc(100% + 2.4rem);
+    margin: .8rem -1.2rem 0;
+    padding: .5rem 1.2rem;
     background: rgba(255,179,209,.18);
     border-top: 1px solid rgba(42,34,51,.1);
   }
   .chip-bars {
-    height: 1rem;
+    height: 1.4rem;
     background: repeating-linear-gradient(90deg,
       var(--ink) 0 2px, transparent 2px 5px, var(--ink) 5px 6px, transparent 6px 10px);
     opacity: .7;
   }
   .pin {
     position: absolute;
-    width: .42rem; height: .42rem;
+    width: .5rem; height: .5rem;
     border-radius: 50%;
     background: var(--paper);
     box-shadow: inset 0 1px 2px rgba(42,34,51,.35);
   }
-  .pin.tl { top: .38rem; left: .38rem; }
-  .pin.tr { top: .38rem; right: .38rem; }
+  .pin.tl { top: .45rem; left: .45rem; }
+  .pin.tr { top: .45rem; right: .45rem; }
 
-  /* ---------- how it works + count me in ---------- */
-
-  .deal { gap: .9rem; padding-block: 2vh 10vh; }
-
-  .deal-card {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    max-width: 21rem;
-    background: var(--cream);
-    padding: 1.1rem 1.2rem 1.2rem;
-    text-align: left;
-    box-shadow: 0 4px 12px -4px rgba(42,34,51,.3);
-    transform: rotate(-1.2deg);
-  }
-  .deal-card h2 {
-    margin: 0 0 .8rem;
-    font-family: var(--f-black);
-    font-size: .74rem;
-    letter-spacing: .2em;
-    text-transform: uppercase;
-    color: var(--denim);
-  }
-  .deal-card ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: .65rem; }
-  .deal-card li {
-    font-family: var(--f-type);
-    font-size: .98rem;
-    line-height: 1.45;
-    padding-left: 1.5rem;
-    position: relative;
-  }
-  .deal-card li::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: .42em;
-    width: .6rem;
-    height: .6rem;
-    border: 2px solid var(--ink-soft);
-    border-radius: 2px;
-    transition: border-color .4s ease, background .4s ease;
-  }
-  body.signed .deal-card li::before {
-    border-color: var(--hot);
-    background:
-      linear-gradient(45deg, transparent 42%, var(--hot) 42% 58%, transparent 58%),
-      linear-gradient(-45deg, transparent 42%, var(--hot) 42% 58%, transparent 58%);
-  }
+  /* ---------- one button, nothing else ---------- */
 
   .sign-row {
     position: relative;
-    z-index: 2;
+    z-index: 4;
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 4.4rem;
+    min-height: 4.6rem;
     justify-content: center;
   }
   .sign-btn {
     font-family: var(--f-black);
-    font-size: .85rem;
+    font-size: .95rem;
     letter-spacing: .12em;
     text-transform: uppercase;
     color: #fff;
     background: var(--hot);
     border: none;
     border-radius: 999px;
-    padding: .9rem 2.1rem;
+    padding: 1rem 2.4rem;
     cursor: pointer;
     box-shadow: 0 4px 0 #B82A6E, 0 8px 14px -6px rgba(42,34,51,.5);
     transition: transform .12s ease, box-shadow .12s ease;
@@ -411,14 +383,14 @@
     gap: .05rem;
     border: 3px solid var(--red);
     color: var(--red);
-    padding: .45rem 1.2rem;
+    padding: .5rem 1.4rem;
     transform: rotate(-7deg);
     font-family: var(--f-black);
-    font-size: 1.1rem;
-    letter-spacing: .18em;
+    font-size: 1.25rem;
+    letter-spacing: .2em;
     text-transform: uppercase;
-    opacity: .88;
-    animation: thud .35s cubic-bezier(.3,1.6,.5,1);
+    opacity: .9;
+    animation: thud .4s cubic-bezier(.3,1.6,.5,1);
   }
   .stamp small {
     font-family: var(--f-mono);
@@ -428,68 +400,23 @@
   }
   .stamp[hidden] { display: none; }
   @keyframes thud {
-    0%   { transform: rotate(-7deg) scale(2.4); opacity: 0; }
-    60%  { transform: rotate(-7deg) scale(.92); opacity: .95; }
-    100% { transform: rotate(-7deg) scale(1); opacity: .88; }
+    0%   { transform: rotate(-7deg) scale(2.6); opacity: 0; }
+    60%  { transform: rotate(-7deg) scale(.92); opacity: .96; }
+    100% { transform: rotate(-7deg) scale(1); opacity: .9; }
   }
 
-  /* ---------- the empty results sheet ---------- */
+  /* ---------- countdown ---------- */
 
-  .splits-wrap { gap: 1rem; padding-block: 2vh 10vh; }
-
-  .splits {
+  .count { gap: .9rem; padding-block: 2vh 10vh; }
+  .count-label {
     position: relative;
     z-index: 2;
-    width: 100%;
-    max-width: 20rem;
-    background: var(--paper-2);
-    padding: 1rem 1.1rem 1.1rem;
-    box-shadow: 0 4px 12px -4px rgba(42,34,51,.28);
-    transform: rotate(1deg);
-    text-align: left;
-  }
-  .splits h2 {
-    margin: 0 0 .2rem;
-    font-family: var(--f-black);
-    font-size: .72rem;
+    font-family: var(--f-mono);
+    font-size: .66rem;
     letter-spacing: .2em;
     text-transform: uppercase;
-    color: var(--hot);
-  }
-  .splits table { width: 100%; border-collapse: collapse; margin-top: .7rem; }
-  .splits th {
-    font-family: var(--f-mono);
-    font-size: .55rem;
-    letter-spacing: .16em;
-    text-transform: uppercase;
     color: var(--ink-soft);
-    text-align: left;
-    padding-bottom: .35rem;
-    font-weight: 400;
   }
-  .splits th:last-child, .splits td:last-child { text-align: right; }
-  .splits td {
-    font-family: var(--f-black);
-    font-size: .92rem;
-    padding: .5rem 0;
-    border-top: 1px solid var(--hair);
-    font-variant-numeric: tabular-nums;
-  }
-  .splits td.t {
-    font-family: var(--f-mono);
-    font-weight: 400;
-    color: var(--ink-soft);
-    letter-spacing: .1em;
-  }
-  .splits tr.edge td { color: var(--hot); }
-  .splits figcaption,
-  .splits .foot {
-    margin-top: .8rem;
-    font-family: var(--f-hand);
-    font-size: .95rem;
-    color: var(--denim);
-  }
-
   .clock {
     position: relative;
     z-index: 2;
@@ -499,7 +426,6 @@
     gap: .5rem;
   }
   .unit {
-    background: var(--cream);
     border-radius: 999px;
     padding: .5rem .85rem;
     display: flex;
@@ -528,43 +454,6 @@
     text-transform: uppercase;
     color: rgba(42,34,51,.65);
   }
-
-  /* ---------- the reward ---------- */
-
-  .reward { gap: 1rem; padding-block: 2vh 10vh; }
-
-  .reward-card {
-    position: relative;
-    z-index: 2;
-    background: var(--cream);
-    padding: 1.5rem 1.2rem 1.2rem;
-    max-width: 21rem;
-    transform: rotate(1.4deg);
-    box-shadow: 0 4px 10px -3px rgba(42,34,51,.3);
-    font-family: var(--f-type);
-    font-size: .98rem;
-    line-height: 1.55;
-    text-align: left;
-  }
-  .reward-card::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 7px;
-    background: repeating-linear-gradient(90deg,
-      var(--hot) 0 14px, var(--butter) 14px 28px,
-      var(--denim) 28px 42px, var(--mint) 42px 56px);
-  }
-  .reward-card .kicker {
-    display: block;
-    font-family: var(--f-mono);
-    font-size: .58rem;
-    letter-spacing: .18em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    margin-bottom: .45rem;
-  }
-  .reward-card b { color: var(--hot); }
 
   /* ---------- close ---------- */
 
@@ -597,6 +486,18 @@
     max-width: 20ch;
     transform: rotate(-2deg);
   }
+  .ps {
+    position: relative;
+    z-index: 2;
+    margin: .4rem 0 0;
+    max-width: 24ch;
+    font-family: var(--f-mono);
+    font-size: .74rem;
+    line-height: 1.7;
+    letter-spacing: .03em;
+    color: var(--ink-soft);
+  }
+  .ps b { color: var(--hot); font-family: var(--f-black); letter-spacing: 0; }
 
   /* ---------- sticker placement, phone first ---------- */
 
@@ -608,29 +509,29 @@
   .s-shoe   { width: 22%; bottom: 10%; right: 4%; transform: rotate(8deg); }
   .s-eye    { width: 13%; bottom: 8%;  left: 8%;  transform: rotate(-6deg); }
 
-  .s-tulip  { width: 23%; top: 6%;  left: 3%;   transform: rotate(-7deg); }
-  .s-star2  { width: 12%; bottom: 12%; right: 6%; transform: rotate(14deg); }
+  .s-tulip  { width: 23%; top: 5%;  left: 3%;   transform: rotate(-7deg); }
+  .s-star2  { width: 12%; bottom: 14%; right: 6%; transform: rotate(14deg); }
 
-  .s-medal  { width: 19%; top: 2%;  right: 4%;  transform: rotate(-10deg); }
-  .s-km     { width: 25%; bottom: 4%; left: 3%;  transform: rotate(-9deg); }
+  .s-medal  { width: 19%; top: 1%;  right: 4%;  transform: rotate(-10deg); }
+  .s-km     { width: 25%; bottom: 3%; left: 3%;  transform: rotate(-9deg); }
 
-  .s-watch  { width: 18%; bottom: 6%; right: 5%; transform: rotate(9deg); }
-  .s-dice   { width: 14%; top: 3%;  right: 6%;  transform: rotate(-12deg); }
+  .s-watch  { width: 17%; top: 4%;  left: 5%;   transform: rotate(-12deg); }
 
-  .s-disco2 { width: 16%; top: -1%; right: 7%;  transform: rotate(10deg); z-index: 3; }
-
-  .s-bfly3  { width: 15%; top: 6%;  right: 7%;  transform: rotate(14deg); }
-  .s-lips2  { width: 16%; bottom: 9%; left: 7%; transform: rotate(9deg); }
-  .s-flower { width: 15%; top: 10%; left: 5%;   transform: rotate(-9deg); }
+  .s-bfly3  { width: 15%; top: 5%;  right: 7%;  transform: rotate(14deg); }
+  .s-lips2  { width: 16%; bottom: 12%; left: 7%; transform: rotate(9deg); }
+  .s-disco2 { width: 14%; bottom: 6%; right: 6%; transform: rotate(10deg); }
 
   @media (max-width: 359px) {
-    .s-bfly1, .s-eye, .s-dice, .s-star2 { display: none; }
+    .s-bfly1, .s-eye, .s-star2 { display: none; }
   }
 
   @media (prefers-reduced-motion: reduce) {
     .hint::after, .stamp { animation: none; }
+    body.signed .bib { animation: none; }
   }
 </style>
+
+<canvas id="confetti" aria-hidden="true"></canvas>
 
 <main>
 
@@ -704,7 +605,7 @@
     <div class="hint" id="hint">Scroll</div>
   </section>
 
-  <!-- ============ THE GOAL ============ -->
+  <!-- ============ THE SHARED GOAL ============ -->
   <section class="goal">
     <div class="sticker s-tulip"><svg viewBox="0 0 100 100"><g class="cut">
       <path d="M50 92V44M50 60c-12-4-20-14-22-26M50 60c12-4 20-14 22-26" stroke="#4E8C5A" stroke-width="5" fill="none"/>
@@ -715,15 +616,15 @@
 
     <p class="goal-kicker">Unser Ziel 2027</p>
     <p class="goal-num">21,0975<span class="u">km</span></p>
-    <p class="goal-sub">Salzburger Halbmarathon, 23. Mai.<br><em>Du und ich.</em></p>
+    <p class="goal-sub">Salzburger Halbmarathon, 23. Mai.<br><em>Wir zwei, nebeneinander.</em></p>
 
     <div class="sticker s-star2"><svg viewBox="0 0 100 100"><g class="cut">
       <path d="M50 6l12 30 32 2-25 21 8 31-27-18-27 18 8-31L6 38l32-2z" fill="#E8398B"/>
     </g></svg></div>
   </section>
 
-  <!-- ============ BIBS ============ -->
-  <section class="bibs-wrap">
+  <!-- ============ ONE BIG BIB + ONE BUTTON ============ -->
+  <section class="bib-wrap">
     <div class="sticker s-medal"><svg viewBox="0 0 100 100"><g class="cut">
       <path d="M28 6l16 32h-14L16 6z" fill="#3E5C97"/>
       <path d="M72 6L56 38h14L84 6z" fill="#A8C4E8"/>
@@ -734,21 +635,18 @@
       </g>
     </g></svg></div>
 
-    <div class="bibs">
-      <div class="bib">
-        <span class="pin tl"></span><span class="pin tr"></span>
-        <div class="bib-org">Sparkasse Halbmarathon<small>Salzburg 2027</small></div>
-        <div class="bib-num">20</div>
-        <div class="bib-name">Hannah</div>
-        <div class="bib-chip"><div class="chip-bars" aria-hidden="true"></div></div>
-      </div>
-      <div class="bib two">
-        <span class="pin tl"></span><span class="pin tr"></span>
-        <div class="bib-org">Sparkasse Halbmarathon<small>Salzburg 2027</small></div>
-        <div class="bib-num">21</div>
-        <div class="bib-name">Ich</div>
-        <div class="bib-chip"><div class="chip-bars" aria-hidden="true"></div></div>
-      </div>
+    <div class="bib" id="bib">
+      <span class="pin tl"></span><span class="pin tr"></span>
+      <div class="bib-org">Sparkasse Halbmarathon<small>Salzburg · 23. Mai 2027</small></div>
+      <div class="bib-num">20</div>
+      <div class="bib-name">Hannah</div>
+      <div class="bib-meta"><span>21,0975 km</span><span>Start 08:30</span></div>
+      <div class="bib-chip"><div class="chip-bars" aria-hidden="true"></div></div>
+    </div>
+
+    <div class="sign-row">
+      <button class="sign-btn" id="signBtn" type="button">Bin dabei</button>
+      <div class="stamp" id="stamp" hidden>Dabei<small id="stampDate"></small></div>
     </div>
 
     <div class="sticker s-km"><svg viewBox="0 0 140 70"><g class="cut">
@@ -757,31 +655,8 @@
     </g></svg></div>
   </section>
 
-  <!-- ============ THE DEAL ============ -->
-  <section class="deal">
-    <div class="sticker s-dice"><svg viewBox="0 0 100 100"><g class="cut">
-      <rect x="10" y="10" width="80" height="80" rx="16" fill="#FFF6E8"/>
-      <g class="det" fill="#D62246">
-        <circle cx="32" cy="32" r="8"/><circle cx="68" cy="32" r="8"/>
-        <circle cx="50" cy="50" r="8"/>
-        <circle cx="32" cy="68" r="8"/><circle cx="68" cy="68" r="8"/>
-      </g>
-    </g></svg></div>
-
-    <div class="deal-card">
-      <h2>Wie das läuft</h2>
-      <ul>
-        <li>Wir trainieren zusammen. Sonntags. Auch im Jänner.</li>
-        <li>Jammern ist erlaubt. Aufgeben nicht.</li>
-        <li>Wir laufen nebeneinander ins Ziel.</li>
-      </ul>
-    </div>
-
-    <div class="sign-row">
-      <button class="sign-btn" id="signBtn" type="button">Bin dabei</button>
-      <div class="stamp" id="stamp" hidden>Dabei<small id="stampDate"></small></div>
-    </div>
-
+  <!-- ============ COUNTDOWN ============ -->
+  <section class="count">
     <div class="sticker s-watch"><svg viewBox="0 0 100 100"><g class="cut">
       <rect x="42" y="2" width="16" height="11" rx="3" fill="#6B3A5B"/>
       <circle cx="50" cy="56" r="36" fill="#FFD95C"/>
@@ -791,60 +666,13 @@
         <circle cx="50" cy="56" r="4" fill="#2A2233"/>
       </g>
     </g></svg></div>
-  </section>
 
-  <!-- ============ EMPTY RESULTS SHEET + COUNTDOWN ============ -->
-  <section class="splits-wrap">
-    <div class="splits">
-      <h2>Zwischenzeiten</h2>
-      <table>
-        <thead>
-          <tr><th scope="col">Punkt</th><th scope="col">Zeit</th></tr>
-        </thead>
-        <tbody>
-          <tr class="edge"><td>Start</td><td class="t">—:—:—</td></tr>
-          <tr><td>km 5</td><td class="t">—:—:—</td></tr>
-          <tr><td>km 10,5</td><td class="t">—:—:—</td></tr>
-          <tr><td>km 15</td><td class="t">—:—:—</td></tr>
-          <tr class="edge"><td>Ziel</td><td class="t">—:—:—</td></tr>
-        </tbody>
-      </table>
-      <p class="foot">Füllen wir am 23. Mai aus.</p>
-    </div>
-
+    <div class="count-label">Noch</div>
     <div class="clock" id="clock">
       <div class="unit"><b id="d">—</b><span>Tage</span></div>
       <div class="unit"><b id="h">—</b><span>Std</span></div>
       <div class="unit"><b id="m">—</b><span>Min</span></div>
       <div class="unit"><b id="s">—</b><span>Sek</span></div>
-    </div>
-  </section>
-
-  <!-- ============ THE REWARD ============ -->
-  <section class="reward">
-    <div class="sticker s-disco2"><svg viewBox="0 0 100 100"><g class="cut">
-      <rect x="46" y="2" width="8" height="14" rx="2" fill="#9AA3B0"/>
-      <circle cx="50" cy="56" r="38" fill="#C7CDD6"/>
-      <path d="M12 56h76M50 18v76M22 30l56 52M78 30L22 82M16 40h68M16 72h68M34 20v72M66 20v72"
-            stroke="#8B93A1" stroke-width="2.2" fill="none" opacity=".85"/>
-      <circle class="det" cx="36" cy="42" r="7" fill="#EEF1F5" opacity=".9"/>
-    </g></svg></div>
-    <div class="sticker s-flower"><svg viewBox="0 0 100 100"><g class="cut">
-      <g fill="#FFB3D1">
-        <ellipse cx="50" cy="26" rx="15" ry="20"/><ellipse cx="74" cy="44" rx="15" ry="20" transform="rotate(72 74 44)"/>
-        <ellipse cx="65" cy="72" rx="15" ry="20" transform="rotate(144 65 72)"/><ellipse cx="35" cy="72" rx="15" ry="20" transform="rotate(216 35 72)"/>
-        <ellipse cx="26" cy="44" rx="15" ry="20" transform="rotate(288 26 44)"/>
-      </g>
-      <g class="det">
-        <circle cx="50" cy="50" r="13" fill="#E8398B"/>
-        <circle cx="50" cy="50" r="6" fill="#FFD95C"/>
-      </g>
-    </g></svg></div>
-
-    <div class="reward-card">
-      <span class="kicker">Und die Belohnung</span>
-      Im Sommer drauf gehen wir wieder auf <b>BUNT.</b> — auf seiner richtigen
-      Tour. München, oder wo er dann halt spielt. Ausgemacht ist ausgemacht.
     </div>
   </section>
 
@@ -862,6 +690,13 @@
       <path class="det" d="M18 46c12-3 52-3 64 0-10 5-54 5-64 0z" fill="#8E1028"/>
       <path class="det" d="M50 34c-4-5-10-8-15-8 6-1 12 1 15 5 3-4 9-6 15-5-5 0-11 3-15 8z" fill="#F2708A" opacity=".7"/>
     </g></svg></div>
+    <div class="sticker s-disco2"><svg viewBox="0 0 100 100"><g class="cut">
+      <rect x="46" y="2" width="8" height="14" rx="2" fill="#9AA3B0"/>
+      <circle cx="50" cy="56" r="38" fill="#C7CDD6"/>
+      <path d="M12 56h76M50 18v76M22 30l56 52M78 30L22 82M16 40h68M16 72h68M34 20v72M66 20v72"
+            stroke="#8B93A1" stroke-width="2.2" fill="none" opacity=".85"/>
+      <circle class="det" cx="36" cy="42" r="7" fill="#EEF1F5" opacity=".9"/>
+    </g></svg></div>
 
     <p class="ransom" style="--ransom-size: clamp(2rem, 11.5vw, 3.2rem)">
       <span class="word"><span class="l7">2</span><span class="l2">0</span></span>
@@ -869,12 +704,66 @@
     </p>
     <p class="close-line">Weil ein Konzert mit dir<br><span class="pink">zu wenig war.</span></p>
     <p class="sign-off">Alles Gute, Hannah.</p>
+    <p class="ps">P.S. <b>BUNT.</b> gibt's im Sommer drauf als Belohnung.</p>
   </section>
 
 </main>
 
 <script>
 (function () {
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---- confetti ---- */
+  var cv = document.getElementById("confetti");
+  var ctx = cv.getContext("2d");
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+  var COLORS = ["#E8398B", "#FFD95C", "#3E5C97", "#A8E0C8", "#C4A7E7", "#FFB3D1", "#D62246"];
+
+  function sizeCanvas() {
+    cv.width = window.innerWidth * dpr;
+    cv.height = window.innerHeight * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  sizeCanvas();
+  window.addEventListener("resize", sizeCanvas);
+
+  function burst(x, y) {
+    var parts = [];
+    for (var i = 0; i < 90; i++) {
+      var a = -Math.PI / 2 + (Math.random() - 0.5) * Math.PI * 1.25;
+      var sp = 7 + Math.random() * 11;
+      parts.push({
+        x: x, y: y,
+        vx: Math.cos(a) * sp, vy: Math.sin(a) * sp,
+        w: 5 + Math.random() * 6, h: 8 + Math.random() * 9,
+        rot: Math.random() * Math.PI, vr: (Math.random() - 0.5) * 0.4,
+        c: COLORS[i % COLORS.length], life: 0
+      });
+    }
+    function frame() {
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      var alive = 0;
+      for (var i = 0; i < parts.length; i++) {
+        var p = parts[i];
+        p.vy += 0.34; p.vx *= 0.995;
+        p.x += p.vx; p.y += p.vy; p.rot += p.vr; p.life++;
+        if (p.y < window.innerHeight + 40 && p.life < 170) alive++;
+        var o = Math.max(0, 1 - p.life / 170);
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot);
+        ctx.globalAlpha = o;
+        ctx.fillStyle = p.c;
+        ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+        ctx.restore();
+      }
+      if (alive > 0) requestAnimationFrame(frame);
+      else ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    }
+    frame();
+  }
+
+  /* ---- "Bin dabei" ---- */
   var btn = document.getElementById("signBtn");
   var stamp = document.getElementById("stamp");
   var stampDate = document.getElementById("stampDate");
@@ -896,17 +785,20 @@
   if (stored) apply(stored);
 
   btn.addEventListener("click", function () {
+    var r = btn.getBoundingClientRect();
     var d = today();
     apply(d);
+    if (!reduce) burst(r.left + r.width / 2, r.top + r.height / 2);
     try { window.localStorage.setItem(KEY, d); } catch (e) { /* not persisted, still marked */ }
   });
 
+  /* ---- scroll hint ---- */
   var hint = document.getElementById("hint");
   window.addEventListener("scroll", function () {
     if (window.scrollY > 50) hint.classList.add("gone");
   }, { passive: true });
 
-  /* Sparkasse Halbmarathon Salzburg — Sun 23 May 2027, 08:30 CEST */
+  /* ---- countdown: Sun 23 May 2027, 08:30 CEST ---- */
   var target = new Date("2027-05-23T08:30:00+02:00").getTime();
   var d = document.getElementById("d"), h = document.getElementById("h"),
       m = document.getElementById("m"), s = document.getElementById("s");
