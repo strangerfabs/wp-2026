@@ -718,6 +718,10 @@
   window.addEventListener("resize", sizeCanvas);
 
   function burst(x, y) {
+    /* Size at burst time, not only on load: a rotated phone (or any viewport
+       change that does not deliver a resize event) would otherwise leave the
+       backing store at the old dimensions and throw the confetti off-screen. */
+    sizeCanvas();
     var parts = [];
     for (var i = 0; i < 90; i++) {
       var a = -Math.PI / 2 + (Math.random() - 0.5) * Math.PI * 1.25;
