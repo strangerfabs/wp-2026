@@ -11,7 +11,23 @@ mit Scroll-Story und Countdown auf den 04.12.2026.
 | --- | --- |
 | `card.src.html` | Quelle. Nur Inhalt, ohne `<html>`/`<head>` — diese Fassung wird als Artifact veröffentlicht. |
 | `index.html` | Generiert aus `card.src.html`. Vollständiges Dokument mit Viewport- und `noindex`-Meta. Das ist die Seite, die GitHub Pages ausliefert. |
+| `print.html` | A4-Blatt zum Ausdrucken mit QR-Code auf die Karte. Eigenständig, wird **nicht** von `build.sh` erzeugt. |
 | `robots.txt` | Sperrt Suchmaschinen aus. |
+
+## QR-Code
+
+Der QR-Code in `print.html` ist als reines Inline-SVG eingebacken — kein Skript, kein
+externer Dienst, nichts wird beim Drucken nachgeladen. Er kodiert
+`https://strangerfabs.github.io/wp-2026/`, Version 4, Fehlerkorrektur Q (25 %).
+
+**Ändert sich die URL, muss er neu erzeugt werden.** Er steht sonst still auf der alten
+Adresse. Erzeugt wurde er mit [segno](https://pypi.org/project/segno/):
+
+```python
+import segno
+qr = segno.make("https://strangerfabs.github.io/wp-2026/", error='q')
+# jedes dunkle Modul wird zu "M{x} {y}h1v1h-1z", plus 4 Module Ruhezone ringsum
+```
 
 `index.html` wird aus `card.src.html` erzeugt — Änderungen also **immer in `card.src.html`**
 machen und danach `./build.sh` laufen lassen, sonst laufen Artifact und Pages auseinander.

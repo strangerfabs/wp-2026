@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<title>Zum Ausdrucken</title>
+<style>
+  @page { size: A4 portrait; margin: 0; }
+
+  :root {
+    --paper:  #FFFFFF;
+    --bubble: #FFB3D1;
+    --hot:    #E8398B;
+    --butter: #FFD95C;
+    --lilac:  #C4A7E7;
+    --denim:  #3E5C97;
+    --sky:    #A8C4E8;
+    --mint:   #A8E0C8;
+    --plum:   #6B3A5B;
+    --cream:  #FFF6E8;
+    --red:    #D62246;
+    --ink:    #2A2233;
+    --ink-soft: #7A6E85;
+
+    --f-type:  "American Typewriter", "Courier New", Georgia, serif;
+    --f-didot: "Didot", "Bodoni 72", Georgia, "Times New Roman", serif;
+    --f-black: "Arial Black", "Helvetica Neue", Impact, sans-serif;
+    --f-chalk: "Chalkboard SE", "Comic Sans MS", "Marker Felt", cursive;
+    --f-hand:  "Bradley Hand", "Noteworthy", "Marker Felt", "Chalkboard SE", cursive;
+    --f-mono:  "Courier New", ui-monospace, Menlo, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; }
+
+  html, body {
+    background: #E9E6EE;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .sheet {
+    position: relative;
+    width: 210mm;
+    height: 297mm;
+    background: var(--paper);
+    margin: 8mm auto;
+    box-shadow: 0 4mm 12mm rgba(42,34,51,.25);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 7mm;
+    padding: 18mm 16mm;
+    text-align: center;
+  }
+
+  .eyebrow {
+    font-family: var(--f-mono);
+    font-size: 3.4mm;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  /* ransom lettering */
+  .ransom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 2mm 4mm;
+    line-height: 1;
+  }
+  .word { display: inline-flex; align-items: flex-end; gap: .6mm; }
+  .word > span {
+    display: inline-block;
+    padding: 1mm 2mm;
+    font-size: 14mm;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .l1 { font-family: var(--f-didot); background: var(--bubble); color: var(--cream); transform: rotate(-4deg); }
+  .l2 { font-family: var(--f-black); background: var(--butter); color: #fff;         transform: rotate(3deg); }
+  .l3 { font-family: var(--f-type);  background: var(--lilac);  color: var(--denim); transform: rotate(-2deg); }
+  .l4 { font-family: var(--f-didot); background: var(--cream);  color: var(--hot);   transform: rotate(5deg); font-style: italic; }
+  .l5 { font-family: var(--f-black); background: var(--denim);  color: var(--cream); transform: rotate(-3deg); }
+  .l6 { font-family: var(--f-mono);  background: var(--mint);   color: var(--plum);  transform: rotate(4deg); font-weight: 700; }
+  .l7 { font-family: var(--f-chalk); background: var(--hot);    color: #fff;         transform: rotate(-5deg); }
+  .l8 { font-family: var(--f-type);  background: var(--sky);    color: var(--plum);  transform: rotate(2deg); }
+
+  .name {
+    font-family: var(--f-hand);
+    font-size: 15mm;
+    color: var(--hot);
+    transform: rotate(-3deg);
+    margin-top: 1mm;
+  }
+
+  .teaser {
+    font-family: var(--f-didot);
+    font-size: 8.5mm;
+    line-height: 1.3;
+    max-width: 125mm;
+    text-wrap: balance;
+    margin-top: 2mm;
+  }
+  .teaser em { font-style: italic; color: var(--hot); }
+
+  /* the QR is drawn as foreground SVG, so it prints even when the
+     browser is set to leave background graphics out */
+  .qr-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3mm;
+    margin-top: 1mm;
+  }
+  .qr {
+    width: 62mm;
+    height: 62mm;
+    display: block;
+  }
+  .qr-call {
+    font-family: var(--f-black);
+    font-size: 6mm;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .qr-hint {
+    font-family: var(--f-mono);
+    font-size: 3.2mm;
+    letter-spacing: .1em;
+    color: var(--ink-soft);
+  }
+  .fallback {
+    font-family: var(--f-mono);
+    font-size: 3mm;
+    letter-spacing: .06em;
+    color: var(--ink-soft);
+    margin-top: 1mm;
+  }
+
+  /* stickers */
+  .sticker { position: absolute; }
+  .sticker svg { display: block; width: 100%; height: auto; }
+  .cut { stroke: #fff; stroke-width: 7; paint-order: stroke; stroke-linejoin: round; stroke-linecap: round; }
+  .cut .det { stroke: none; }
+
+  .s-cup   { width: 26mm; top: 14mm;  left: 16mm;  transform: rotate(-8deg); }
+  .s-disco { width: 30mm; top: 12mm;  right: 15mm; }
+  .s-star  { width: 16mm; top: 52mm;  right: 24mm; transform: rotate(14deg); }
+  .s-shoe  { width: 30mm; bottom: 20mm; left: 16mm; transform: rotate(-8deg); }
+  .s-medal { width: 24mm; bottom: 22mm; right: 18mm; transform: rotate(-10deg); }
+  .s-lips  { width: 22mm; top: 60mm;  left: 20mm;  transform: rotate(-14deg); }
+
+  /* screen-only chrome */
+  .bar {
+    max-width: 210mm;
+    margin: 8mm auto 0;
+    display: flex;
+    gap: 4mm;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--f-mono);
+    font-size: 12px;
+    color: #4A4356;
+  }
+  .bar button {
+    font-family: var(--f-black);
+    font-size: 12px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--hot);
+    border: 0;
+    border-radius: 999px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  .bar button:focus-visible { outline: 3px solid var(--denim); outline-offset: 3px; }
+
+  @media print {
+    html, body { background: #fff; }
+    .bar { display: none; }
+    .sheet { margin: 0; box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <button type="button" onclick="window.print()">Drucken</button>
+  <span>A4, Hochformat, Rand auf „keiner“ &middot; Hintergrundgrafiken einschalten</span>
+</div>
+
+<div class="sheet">
+
+  <div class="sticker s-cup"><svg viewBox="0 0 100 100"><g class="cut">
+    <rect x="47" y="4" width="6" height="17" rx="3" fill="#A8C4E8"/>
+    <path d="M50 0c4 4 2 6 0 8-2-2-4-4 0-8z" fill="#FFD95C"/>
+    <path d="M22 50c-3-9 2-16 9-17 0-9 7-14 14-12 4-7 14-7 18 0 8-1 14 5 13 13 5 3 6 11 2 16z" fill="#FFF6E8"/>
+    <path d="M24 52h52l-7 36a7 7 0 0 1-7 6H38a7 7 0 0 1-7-6z" fill="#F2A8C4"/>
+    <g class="det">
+      <path d="M35 57l3 33M45 57l1 33M56 57l-1 33M66 57l-3 33" stroke="#DE8FB2" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+      <circle cx="38" cy="38" r="3" fill="#E8398B"/><circle cx="60" cy="33" r="3" fill="#3E5C97"/>
+      <circle cx="50" cy="44" r="3" fill="#FFD95C"/><circle cx="68" cy="43" r="3" fill="#A8E0C8"/>
+      <circle cx="30" cy="45" r="3" fill="#C4A7E7"/>
+    </g>
+  </g></svg></div>
+
+  <div class="sticker s-disco"><svg viewBox="0 0 100 100"><g class="cut">
+    <rect x="46" y="2" width="8" height="14" rx="2" fill="#9AA3B0"/>
+    <circle cx="50" cy="56" r="38" fill="#C7CDD6"/>
+    <path d="M12 56h76M50 18v76M22 30l56 52M78 30L22 82M16 40h68M16 72h68M34 20v72M66 20v72"
+          stroke="#8B93A1" stroke-width="2.2" fill="none" opacity=".85"/>
+    <circle class="det" cx="36" cy="42" r="7" fill="#EEF1F5" opacity=".9"/>
+    <circle class="det" cx="62" cy="70" r="5" fill="#FFF" opacity=".7"/>
+  </g></svg></div>
+
+  <div class="sticker s-lips"><svg viewBox="0 0 100 100"><g class="cut">
+    <path d="M50 34c8-12 26-16 34-6 6 8-2 14-8 16 8 0 12 6 8 12-8 12-24 20-34 20S22 68 14 56c-4-6 0-12 8-12-6-2-14-8-8-16 8-10 26-6 36 6z" fill="#D62246"/>
+    <path class="det" d="M18 46c12-3 52-3 64 0-10 5-54 5-64 0z" fill="#8E1028"/>
+  </g></svg></div>
+
+  <div class="sticker s-star"><svg viewBox="0 0 100 100"><g class="cut">
+    <path d="M50 6l12 30 32 2-25 21 8 31-27-18-27 18 8-31L6 38l32-2z" fill="#3E5C97"/>
+  </g></svg></div>
+
+  <div class="sticker s-shoe"><svg viewBox="0 0 100 100"><g class="cut">
+    <path d="M10 60c0-7 5-11 11-12l14-3 13-12c4-3 9-2 11 3l3 9c9 3 19 7 26 13 5 4 7 8 7 12 0 3-2 5-6 5H16c-4 0-6-2-6-6z" fill="#E8398B"/>
+    <path class="det" d="M10 70h85v5c0 3-2 5-6 5H16c-4 0-6-2-6-5z" fill="#FFF6E8"/>
+    <g class="det" stroke="#FFF6E8" stroke-width="4" fill="none" stroke-linecap="round">
+      <path d="M42 41l9 12M50 37l10 13M58 34l10 14"/>
+    </g>
+  </g></svg></div>
+
+  <div class="sticker s-medal"><svg viewBox="0 0 100 100"><g class="cut">
+    <path d="M28 6l16 32h-14L16 6z" fill="#3E5C97"/>
+    <path d="M72 6L56 38h14L84 6z" fill="#A8C4E8"/>
+    <circle cx="50" cy="64" r="29" fill="#FFD95C"/>
+    <g class="det">
+      <circle cx="50" cy="64" r="21" fill="#F0BE33"/>
+      <path d="M50 49l4.5 9.6 10.5 1.5-7.5 7.4 1.8 10.5L50 73l-9.3 5 1.8-10.5-7.5-7.4 10.5-1.5z" fill="#FFF6E8"/>
+    </g>
+  </g></svg></div>
+
+  <p class="eyebrow">15. August 2026</p>
+
+  <p class="ransom">
+    <span class="word"><span class="l1">H</span><span class="l2">A</span><span class="l3">P</span><span class="l4">P</span><span class="l5">Y</span></span>
+    <span class="word"><span class="l6">B</span><span class="l7">i</span><span class="l8">R</span><span class="l1">T</span><span class="l4">H</span><span class="l2">D</span><span class="l3">A</span><span class="l7">Y</span></span>
+  </p>
+
+  <p class="name">Hannah</p>
+
+  <p class="teaser">Dein Geschenk passt in kein Packerl.<br><em>Es passt nicht mal auf dieses Blatt.</em></p>
+
+  <div class="qr-wrap">
+    <svg class="qr" viewBox="0 0 41 41" role="img" aria-label="QR-Code zur Geschenkkarte">
+      <rect width="41" height="41" fill="#FFFFFF"/>
+      <path d="M4 4h1v1h-1zM5 4h1v1h-1zM6 4h1v1h-1zM7 4h1v1h-1zM8 4h1v1h-1zM9 4h1v1h-1zM10 4h1v1h-1zM12 4h1v1h-1zM16 4h1v1h-1zM20 4h1v1h-1zM21 4h1v1h-1zM22 4h1v1h-1zM23 4h1v1h-1zM26 4h1v1h-1zM27 4h1v1h-1zM30 4h1v1h-1zM31 4h1v1h-1zM32 4h1v1h-1zM33 4h1v1h-1zM34 4h1v1h-1zM35 4h1v1h-1zM36 4h1v1h-1zM4 5h1v1h-1zM10 5h1v1h-1zM12 5h1v1h-1zM19 5h1v1h-1zM22 5h1v1h-1zM23 5h1v1h-1zM27 5h1v1h-1zM30 5h1v1h-1zM36 5h1v1h-1zM4 6h1v1h-1zM6 6h1v1h-1zM7 6h1v1h-1zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM15 6h1v1h-1zM16 6h1v1h-1zM17 6h1v1h-1zM19 6h1v1h-1zM20 6h1v1h-1zM21 6h1v1h-1zM22 6h1v1h-1zM23 6h1v1h-1zM26 6h1v1h-1zM27 6h1v1h-1zM30 6h1v1h-1zM32 6h1v1h-1zM33 6h1v1h-1zM34 6h1v1h-1zM36 6h1v1h-1zM4 7h1v1h-1zM6 7h1v1h-1zM7 7h1v1h-1zM8 7h1v1h-1zM10 7h1v1h-1zM12 7h1v1h-1zM13 7h1v1h-1zM17 7h1v1h-1zM18 7h1v1h-1zM20 7h1v1h-1zM21 7h1v1h-1zM22 7h1v1h-1zM24 7h1v1h-1zM28 7h1v1h-1zM30 7h1v1h-1zM32 7h1v1h-1zM33 7h1v1h-1zM34 7h1v1h-1zM36 7h1v1h-1zM4 8h1v1h-1zM6 8h1v1h-1zM7 8h1v1h-1zM8 8h1v1h-1zM10 8h1v1h-1zM12 8h1v1h-1zM17 8h1v1h-1zM22 8h1v1h-1zM24 8h1v1h-1zM27 8h1v1h-1zM28 8h1v1h-1zM30 8h1v1h-1zM32 8h1v1h-1zM33 8h1v1h-1zM34 8h1v1h-1zM36 8h1v1h-1zM4 9h1v1h-1zM10 9h1v1h-1zM13 9h1v1h-1zM16 9h1v1h-1zM19 9h1v1h-1zM22 9h1v1h-1zM23 9h1v1h-1zM24 9h1v1h-1zM26 9h1v1h-1zM27 9h1v1h-1zM30 9h1v1h-1zM36 9h1v1h-1zM4 10h1v1h-1zM5 10h1v1h-1zM6 10h1v1h-1zM7 10h1v1h-1zM8 10h1v1h-1zM9 10h1v1h-1zM10 10h1v1h-1zM12 10h1v1h-1zM14 10h1v1h-1zM16 10h1v1h-1zM18 10h1v1h-1zM20 10h1v1h-1zM22 10h1v1h-1zM24 10h1v1h-1zM26 10h1v1h-1zM28 10h1v1h-1zM30 10h1v1h-1zM31 10h1v1h-1zM32 10h1v1h-1zM33 10h1v1h-1zM34 10h1v1h-1zM35 10h1v1h-1zM36 10h1v1h-1zM12 11h1v1h-1zM13 11h1v1h-1zM15 11h1v1h-1zM16 11h1v1h-1zM17 11h1v1h-1zM18 11h1v1h-1zM20 11h1v1h-1zM21 11h1v1h-1zM22 11h1v1h-1zM23 11h1v1h-1zM25 11h1v1h-1zM26 11h1v1h-1zM27 11h1v1h-1zM5 12h1v1h-1zM6 12h1v1h-1zM8 12h1v1h-1zM10 12h1v1h-1zM11 12h1v1h-1zM15 12h1v1h-1zM16 12h1v1h-1zM19 12h1v1h-1zM21 12h1v1h-1zM24 12h1v1h-1zM25 12h1v1h-1zM28 12h1v1h-1zM30 12h1v1h-1zM32 12h1v1h-1zM33 12h1v1h-1zM34 12h1v1h-1zM35 12h1v1h-1zM36 12h1v1h-1zM5 13h1v1h-1zM6 13h1v1h-1zM11 13h1v1h-1zM12 13h1v1h-1zM13 13h1v1h-1zM14 13h1v1h-1zM17 13h1v1h-1zM21 13h1v1h-1zM25 13h1v1h-1zM28 13h1v1h-1zM29 13h1v1h-1zM30 13h1v1h-1zM31 13h1v1h-1zM36 13h1v1h-1zM6 14h1v1h-1zM7 14h1v1h-1zM10 14h1v1h-1zM12 14h1v1h-1zM13 14h1v1h-1zM14 14h1v1h-1zM15 14h1v1h-1zM18 14h1v1h-1zM22 14h1v1h-1zM25 14h1v1h-1zM29 14h1v1h-1zM31 14h1v1h-1zM34 14h1v1h-1zM35 14h1v1h-1zM36 14h1v1h-1zM5 15h1v1h-1zM8 15h1v1h-1zM11 15h1v1h-1zM13 15h1v1h-1zM16 15h1v1h-1zM19 15h1v1h-1zM20 15h1v1h-1zM21 15h1v1h-1zM22 15h1v1h-1zM25 15h1v1h-1zM27 15h1v1h-1zM30 15h1v1h-1zM32 15h1v1h-1zM35 15h1v1h-1zM5 16h1v1h-1zM6 16h1v1h-1zM8 16h1v1h-1zM9 16h1v1h-1zM10 16h1v1h-1zM12 16h1v1h-1zM13 16h1v1h-1zM15 16h1v1h-1zM17 16h1v1h-1zM18 16h1v1h-1zM19 16h1v1h-1zM22 16h1v1h-1zM24 16h1v1h-1zM25 16h1v1h-1zM26 16h1v1h-1zM29 16h1v1h-1zM30 16h1v1h-1zM33 16h1v1h-1zM4 17h1v1h-1zM6 17h1v1h-1zM7 17h1v1h-1zM8 17h1v1h-1zM9 17h1v1h-1zM13 17h1v1h-1zM15 17h1v1h-1zM16 17h1v1h-1zM18 17h1v1h-1zM22 17h1v1h-1zM23 17h1v1h-1zM24 17h1v1h-1zM25 17h1v1h-1zM30 17h1v1h-1zM31 17h1v1h-1zM36 17h1v1h-1zM7 18h1v1h-1zM9 18h1v1h-1zM10 18h1v1h-1zM11 18h1v1h-1zM15 18h1v1h-1zM19 18h1v1h-1zM21 18h1v1h-1zM23 18h1v1h-1zM24 18h1v1h-1zM28 18h1v1h-1zM29 18h1v1h-1zM31 18h1v1h-1zM33 18h1v1h-1zM34 18h1v1h-1zM35 18h1v1h-1zM36 18h1v1h-1zM5 19h1v1h-1zM8 19h1v1h-1zM12 19h1v1h-1zM13 19h1v1h-1zM16 19h1v1h-1zM17 19h1v1h-1zM19 19h1v1h-1zM20 19h1v1h-1zM24 19h1v1h-1zM25 19h1v1h-1zM26 19h1v1h-1zM30 19h1v1h-1zM32 19h1v1h-1zM35 19h1v1h-1zM6 20h1v1h-1zM8 20h1v1h-1zM10 20h1v1h-1zM11 20h1v1h-1zM13 20h1v1h-1zM15 20h1v1h-1zM17 20h1v1h-1zM19 20h1v1h-1zM21 20h1v1h-1zM22 20h1v1h-1zM23 20h1v1h-1zM25 20h1v1h-1zM28 20h1v1h-1zM29 20h1v1h-1zM30 20h1v1h-1zM7 21h1v1h-1zM8 21h1v1h-1zM9 21h1v1h-1zM15 21h1v1h-1zM16 21h1v1h-1zM17 21h1v1h-1zM19 21h1v1h-1zM22 21h1v1h-1zM24 21h1v1h-1zM26 21h1v1h-1zM28 21h1v1h-1zM30 21h1v1h-1zM31 21h1v1h-1zM35 21h1v1h-1zM36 21h1v1h-1zM4 22h1v1h-1zM5 22h1v1h-1zM8 22h1v1h-1zM10 22h1v1h-1zM15 22h1v1h-1zM18 22h1v1h-1zM20 22h1v1h-1zM21 22h1v1h-1zM24 22h1v1h-1zM25 22h1v1h-1zM28 22h1v1h-1zM29 22h1v1h-1zM30 22h1v1h-1zM34 22h1v1h-1zM35 22h1v1h-1zM36 22h1v1h-1zM5 23h1v1h-1zM9 23h1v1h-1zM13 23h1v1h-1zM14 23h1v1h-1zM15 23h1v1h-1zM17 23h1v1h-1zM18 23h1v1h-1zM19 23h1v1h-1zM25 23h1v1h-1zM26 23h1v1h-1zM30 23h1v1h-1zM31 23h1v1h-1zM32 23h1v1h-1zM35 23h1v1h-1zM5 24h1v1h-1zM6 24h1v1h-1zM8 24h1v1h-1zM10 24h1v1h-1zM11 24h1v1h-1zM12 24h1v1h-1zM16 24h1v1h-1zM17 24h1v1h-1zM19 24h1v1h-1zM21 24h1v1h-1zM26 24h1v1h-1zM29 24h1v1h-1zM30 24h1v1h-1zM33 24h1v1h-1zM35 24h1v1h-1zM36 24h1v1h-1zM5 25h1v1h-1zM7 25h1v1h-1zM8 25h1v1h-1zM12 25h1v1h-1zM14 25h1v1h-1zM15 25h1v1h-1zM18 25h1v1h-1zM21 25h1v1h-1zM23 25h1v1h-1zM25 25h1v1h-1zM30 25h1v1h-1zM33 25h1v1h-1zM35 25h1v1h-1zM36 25h1v1h-1zM4 26h1v1h-1zM7 26h1v1h-1zM8 26h1v1h-1zM10 26h1v1h-1zM13 26h1v1h-1zM15 26h1v1h-1zM16 26h1v1h-1zM20 26h1v1h-1zM21 26h1v1h-1zM22 26h1v1h-1zM25 26h1v1h-1zM26 26h1v1h-1zM30 26h1v1h-1zM31 26h1v1h-1zM32 26h1v1h-1zM35 26h1v1h-1zM36 26h1v1h-1zM5 27h1v1h-1zM6 27h1v1h-1zM7 27h1v1h-1zM8 27h1v1h-1zM12 27h1v1h-1zM13 27h1v1h-1zM14 27h1v1h-1zM15 27h1v1h-1zM18 27h1v1h-1zM19 27h1v1h-1zM21 27h1v1h-1zM23 27h1v1h-1zM25 27h1v1h-1zM27 27h1v1h-1zM28 27h1v1h-1zM30 27h1v1h-1zM31 27h1v1h-1zM32 27h1v1h-1zM33 27h1v1h-1zM36 27h1v1h-1zM4 28h1v1h-1zM6 28h1v1h-1zM8 28h1v1h-1zM9 28h1v1h-1zM10 28h1v1h-1zM12 28h1v1h-1zM13 28h1v1h-1zM14 28h1v1h-1zM15 28h1v1h-1zM18 28h1v1h-1zM20 28h1v1h-1zM24 28h1v1h-1zM25 28h1v1h-1zM27 28h1v1h-1zM28 28h1v1h-1zM29 28h1v1h-1zM30 28h1v1h-1zM31 28h1v1h-1zM32 28h1v1h-1zM35 28h1v1h-1zM36 28h1v1h-1zM12 29h1v1h-1zM13 29h1v1h-1zM15 29h1v1h-1zM16 29h1v1h-1zM18 29h1v1h-1zM21 29h1v1h-1zM22 29h1v1h-1zM24 29h1v1h-1zM25 29h1v1h-1zM28 29h1v1h-1zM32 29h1v1h-1zM33 29h1v1h-1zM36 29h1v1h-1zM4 30h1v1h-1zM5 30h1v1h-1zM6 30h1v1h-1zM7 30h1v1h-1zM8 30h1v1h-1zM9 30h1v1h-1zM10 30h1v1h-1zM12 30h1v1h-1zM13 30h1v1h-1zM15 30h1v1h-1zM18 30h1v1h-1zM19 30h1v1h-1zM26 30h1v1h-1zM27 30h1v1h-1zM28 30h1v1h-1zM30 30h1v1h-1zM32 30h1v1h-1zM34 30h1v1h-1zM35 30h1v1h-1zM36 30h1v1h-1zM4 31h1v1h-1zM10 31h1v1h-1zM16 31h1v1h-1zM17 31h1v1h-1zM18 31h1v1h-1zM19 31h1v1h-1zM21 31h1v1h-1zM23 31h1v1h-1zM25 31h1v1h-1zM28 31h1v1h-1zM32 31h1v1h-1zM4 32h1v1h-1zM6 32h1v1h-1zM7 32h1v1h-1zM8 32h1v1h-1zM10 32h1v1h-1zM12 32h1v1h-1zM13 32h1v1h-1zM17 32h1v1h-1zM24 32h1v1h-1zM26 32h1v1h-1zM28 32h1v1h-1zM29 32h1v1h-1zM30 32h1v1h-1zM31 32h1v1h-1zM32 32h1v1h-1zM33 32h1v1h-1zM4 33h1v1h-1zM6 33h1v1h-1zM7 33h1v1h-1zM8 33h1v1h-1zM10 33h1v1h-1zM15 33h1v1h-1zM17 33h1v1h-1zM18 33h1v1h-1zM22 33h1v1h-1zM23 33h1v1h-1zM24 33h1v1h-1zM25 33h1v1h-1zM27 33h1v1h-1zM32 33h1v1h-1zM34 33h1v1h-1zM35 33h1v1h-1zM36 33h1v1h-1zM4 34h1v1h-1zM6 34h1v1h-1zM7 34h1v1h-1zM8 34h1v1h-1zM10 34h1v1h-1zM12 34h1v1h-1zM14 34h1v1h-1zM17 34h1v1h-1zM18 34h1v1h-1zM19 34h1v1h-1zM20 34h1v1h-1zM21 34h1v1h-1zM22 34h1v1h-1zM23 34h1v1h-1zM24 34h1v1h-1zM25 34h1v1h-1zM27 34h1v1h-1zM28 34h1v1h-1zM29 34h1v1h-1zM32 34h1v1h-1zM36 34h1v1h-1zM4 35h1v1h-1zM10 35h1v1h-1zM12 35h1v1h-1zM13 35h1v1h-1zM14 35h1v1h-1zM15 35h1v1h-1zM16 35h1v1h-1zM18 35h1v1h-1zM19 35h1v1h-1zM20 35h1v1h-1zM22 35h1v1h-1zM24 35h1v1h-1zM25 35h1v1h-1zM27 35h1v1h-1zM28 35h1v1h-1zM29 35h1v1h-1zM32 35h1v1h-1zM35 35h1v1h-1zM4 36h1v1h-1zM5 36h1v1h-1zM6 36h1v1h-1zM7 36h1v1h-1zM8 36h1v1h-1zM9 36h1v1h-1zM10 36h1v1h-1zM14 36h1v1h-1zM18 36h1v1h-1zM19 36h1v1h-1zM20 36h1v1h-1zM23 36h1v1h-1zM24 36h1v1h-1zM25 36h1v1h-1zM28 36h1v1h-1zM30 36h1v1h-1zM32 36h1v1h-1zM35 36h1v1h-1zM36 36h1v1h-1z" fill="#2A2233"/>
+    </svg>
+    <p class="qr-call">Scann mich</p>
+    <p class="qr-hint">Handy-Kamera drauf halten</p>
+  </div>
+
+  <p class="fallback">strangerfabs.github.io/wp-2026</p>
+
+</div>
+
+</body>
+</html>
