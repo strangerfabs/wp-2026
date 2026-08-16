@@ -246,23 +246,24 @@
     gap: .5rem;
     padding-block: 2.5rem;
   }
+  /* painted across the tarmac, so exactly as wide as the road */
   .band {
-    width: 100%;
-    max-width: 17rem;
-    height: 2.1rem;
+    width: 5rem;
+    height: 1.7rem;
     background-color: var(--ink);
     background-image: repeating-conic-gradient(#2A2233 0% 25%, #FFFFFF 0% 50%);
-    background-size: 1.05rem 1.05rem;
-    box-shadow: 0 3px 8px -2px rgba(42,34,51,.45);
+    background-size: .85rem .85rem;
   }
+  /* the label sits on the asphalt, so it has to be light */
   .band-label {
     font-family: var(--f-black);
-    font-size: .8rem;
-    letter-spacing: .3em;
+    font-size: .78rem;
+    letter-spacing: .26em;
     text-transform: uppercase;
-    color: var(--ink);
+    color: var(--cream);
+    text-shadow: 0 1px 3px rgba(0,0,0,.6);
   }
-  .finish .band-label { color: var(--hot); font-size: 1.05rem; }
+  .finish .band-label { color: var(--butter); font-size: 1.1rem; }
 
   /* ---------- the build-up, one screen per line ---------- */
 
@@ -276,11 +277,11 @@
     z-index: 2;
     margin: 0;
     text-wrap: balance;
-    /* sits on paper so the asphalt passes behind it, like a sign on the route */
+    /* a solid sign the road runs behind — a soft halo just looked like fog */
     background: var(--paper);
-    padding: 1.1rem 1.3rem;
-    border-radius: 3px;
-    box-shadow: 0 2px 14px 10px var(--paper);
+    padding: 1.2rem 1.4rem;
+    border-radius: 4px;
+    box-shadow: 0 6px 18px -6px rgba(42,34,51,.35);
     opacity: 0;
     transform: translateY(1.4rem);
     transition: opacity .8s ease, transform .9s cubic-bezier(.22,.61,.36,1);
