@@ -5,14 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
 <meta name="theme-color" content="#ffffff">
-<title>Hannahs Startnummer</title>
+<title>Der Pakt</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>%F0%9F%8E%9F%EF%B8%8F</text></svg>">
 <style>*{margin:0}</style>
 </head>
 <body>
 <style>
   :root {
-    /* Pulled from the collage: bubblegum, hot pink, butter, denim, lilac */
     --paper:    #FFFFFF;
     --paper-2:  #FFFAF4;
     --bubble:   #FFB3D1;
@@ -27,8 +26,8 @@
     --red:      #D62246;
 
     --ink:      #2A2233;
-    --ink-soft: #7A6E85;   /* grey with a plum bias, not a default grey */
-    --tape:     rgba(255, 217, 92, .55);
+    --ink-soft: #7A6E85;
+    --rail-off: #D8D2DE;
 
     --f-type:   "American Typewriter", "Courier New", Georgia, serif;
     --f-didot:  "Didot", "Bodoni 72", Georgia, "Times New Roman", serif;
@@ -56,7 +55,7 @@
   main {
     position: relative;
     width: 100%;
-    max-width: 34rem;      /* phone-shaped even on desktop, like the inspo board */
+    max-width: 34rem;
     margin-inline: auto;
     overflow-x: clip;
   }
@@ -104,19 +103,13 @@
     margin: 0;
     padding: 0;
   }
-  /* Words are their own flex group so a line never breaks mid-word. */
-  .word {
-    display: inline-flex;
-    align-items: flex-end;
-    gap: .08em;
-  }
+  .word { display: inline-flex; align-items: flex-end; gap: .08em; }
   .word > span {
     display: inline-block;
     padding: .05em .16em;
     box-shadow: 0 2px 3px rgba(42, 34, 51, .2);
     font-size: var(--ransom-size, clamp(2.1rem, 12.5vw, 3.6rem));
   }
-
   .l1 { font-family: var(--f-didot);  background: var(--bubble); color: var(--cream); transform: rotate(-4deg); }
   .l2 { font-family: var(--f-black);  background: var(--butter); color: #fff;         transform: rotate(3deg); }
   .l3 { font-family: var(--f-type);   background: var(--lilac);  color: var(--denim); transform: rotate(-2deg); }
@@ -134,7 +127,6 @@
     gap: 1.1rem;
     padding-block: 4rem;
   }
-
   .eyebrow {
     font-family: var(--f-mono);
     font-size: .68rem;
@@ -144,7 +136,6 @@
     position: relative;
     z-index: 2;
   }
-
   .name-tag {
     position: relative;
     z-index: 2;
@@ -153,8 +144,6 @@
     color: var(--hot);
     transform: rotate(-3deg);
   }
-
-  /* the 8-ball from the board, turned into a 20-ball */
   .ball {
     position: relative;
     z-index: 2;
@@ -182,7 +171,6 @@
     color: var(--ink);
     letter-spacing: -.04em;
   }
-
   .hint {
     position: relative;
     z-index: 2;
@@ -211,173 +199,381 @@
     50%      { transform: translateY(5px); opacity: .9; }
   }
 
-  /* ---------- story ---------- */
+  /* ---------- the offer ---------- */
 
-  .story {
-    gap: clamp(4.5rem, 20vh, 8rem);
-    padding-block: 26vh;
-  }
-
-  .line {
+  .offer { gap: 2rem; padding-block: 22vh; }
+  .offer-line {
     position: relative;
     z-index: 2;
-    max-width: 15ch;
     margin: 0;
+    max-width: 16ch;
     font-family: var(--f-didot);
-    font-size: clamp(1.55rem, 7.5vw, 2.3rem);
-    line-height: 1.28;
+    font-size: clamp(1.6rem, 7.6vw, 2.4rem);
+    line-height: 1.3;
     text-wrap: balance;
     opacity: 0;
-    transform: translateY(1.2rem) rotate(-1deg);
+    transform: translateY(1.2rem);
     transition: opacity .9s ease, transform .9s cubic-bezier(.22,.61,.36,1);
   }
-  .line.in { opacity: 1; transform: rotate(-1deg); }
-  .line .hl {
-    background: linear-gradient(transparent 58%, var(--butter) 58% 94%, transparent 94%);
-    padding-inline: .1em;
-  }
-  .line .pink { color: var(--hot); font-style: italic; }
-
-  /* ---------- the reveal: a race bib, not a ticket ---------- */
-
-  .reveal {
-    min-height: 100svh;
-    justify-content: center;
-    gap: 1.6rem;
-    padding-block: 10vh;
+  .offer-line.in { opacity: 1; transform: none; }
+  .offer-line .pink { color: var(--hot); font-style: italic; }
+  .offer-line .big {
+    display: block;
+    font-family: var(--f-black);
+    font-style: normal;
+    font-size: clamp(3.4rem, 20vw, 5rem);
+    line-height: .95;
+    letter-spacing: -.05em;
+    color: var(--hot);
+    margin-top: .2rem;
   }
 
-  .bib-stack {
+  /* ---------- the pact ---------- */
+
+  .pact { gap: 1.1rem; padding-block: 8vh 12vh; }
+
+  .pact-head {
     position: relative;
-    z-index: 3;
-    width: 100%;
-    max-width: 18rem;
-    opacity: 0;
-    transform: translateY(2rem) rotate(-2deg) scale(.95);
-    transition: opacity .8s ease, transform 1s cubic-bezier(.34,1.4,.5,1);
+    z-index: 2;
+    font-family: var(--f-black);
+    font-size: clamp(1.6rem, 8vw, 2.2rem);
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    margin: 0 0 .3rem;
   }
-  .bib-stack.in { opacity: 1; transform: rotate(-2deg); }
+  .pact-sub {
+    position: relative;
+    z-index: 2;
+    font-family: var(--f-mono);
+    font-size: .68rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0 0 1rem;
+  }
 
-  /* the second runner's bib, peeking out behind hers */
-  .bib.behind {
+  .party {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 22rem;
+    background: var(--cream);
+    padding: 1.1rem 1.2rem 1.2rem;
+    text-align: left;
+    box-shadow: 0 4px 12px -4px rgba(42,34,51,.3);
+  }
+  .party.mine { transform: rotate(-1.2deg); }
+  .party.hers { transform: rotate(1.2deg); background: #FFF0F6; }
+
+  .party h3 {
+    margin: 0 0 .8rem;
+    font-family: var(--f-black);
+    font-size: .78rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--hot);
+  }
+  .party.mine h3 { color: var(--denim); }
+
+  .party ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+  .party li {
+    font-family: var(--f-type);
+    font-size: .92rem;
+    line-height: 1.45;
+    padding-left: 1.4rem;
+    position: relative;
+  }
+  .party li::before {
+    content: "";
     position: absolute;
-    inset: 0;
-    transform: rotate(7deg) translate(10px, -8px);
-    z-index: -1;
-    filter: saturate(.75);
+    left: 0;
+    top: .45em;
+    width: .55rem;
+    height: .55rem;
+    border: 2px solid var(--ink-soft);
+    border-radius: 2px;
+  }
+  body.signed .party li::before {
+    border-color: var(--hot);
+    background:
+      linear-gradient(45deg, transparent 42%, var(--hot) 42% 58%, transparent 58%),
+      linear-gradient(-45deg, transparent 42%, var(--hot) 42% 58%, transparent 58%);
+  }
+
+  .sign-row {
+    position: relative;
+    z-index: 2;
+    margin-top: .6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .8rem;
+    min-height: 5.4rem;
+    justify-content: center;
+  }
+
+  .sign-btn {
+    font-family: var(--f-black);
+    font-size: .82rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--hot);
+    border: none;
+    border-radius: 999px;
+    padding: .95rem 1.6rem;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #B82A6E, 0 8px 14px -6px rgba(42,34,51,.5);
+    transition: transform .12s ease, box-shadow .12s ease;
+  }
+  .sign-btn:active {
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 #B82A6E, 0 4px 8px -4px rgba(42,34,51,.5);
+  }
+  .sign-btn:focus-visible { outline: 3px solid var(--denim); outline-offset: 3px; }
+
+  .stamp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .1rem;
+    border: 3px solid var(--red);
+    color: var(--red);
+    padding: .5rem 1.1rem;
+    transform: rotate(-7deg);
+    font-family: var(--f-black);
+    font-size: 1.05rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    opacity: .88;
+    animation: thud .35s cubic-bezier(.3,1.6,.5,1);
+  }
+  .stamp small {
+    font-family: var(--f-mono);
+    font-size: .58rem;
+    letter-spacing: .1em;
+    font-weight: 400;
+  }
+  .stamp[hidden] { display: none; }
+  @keyframes thud {
+    0%   { transform: rotate(-7deg) scale(2.4); opacity: 0; }
+    60%  { transform: rotate(-7deg) scale(.92); opacity: .95; }
+    100% { transform: rotate(-7deg) scale(1); opacity: .88; }
+  }
+
+  /* ---------- the line: one rail, two units ---------- */
+
+  .journey { padding-block: 2vh 10vh; }
+
+  .rail {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 23rem;
+    padding-left: 2.4rem;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 1.9rem;
+  }
+  .rail::before {
+    content: "";
+    position: absolute;
+    left: .78rem;
+    top: .5rem;
+    bottom: .5rem;
+    width: .2rem;
+    background: var(--rail-off);
+    transition: background .8s ease;
+  }
+  body.signed .rail::before {
+    background: linear-gradient(180deg,
+      var(--hot) 0%, var(--butter) 28%, var(--mint) 52%, var(--sky) 74%, var(--denim) 100%);
+  }
+
+  .stop { position: relative; }
+  .stop::before {
+    content: "";
+    position: absolute;
+    left: -1.62rem;
+    top: .28rem;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: var(--paper);
+    border: .2rem solid var(--rail-off);
+    transition: border-color .8s ease;
+  }
+  body.signed .stop::before { border-color: var(--hot); }
+
+  .stop-when {
+    font-family: var(--f-mono);
+    font-size: .62rem;
+    letter-spacing: .17em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .stop-what {
+    font-family: var(--f-type);
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-top: .18rem;
+  }
+  .stop-what em { font-style: normal; color: var(--hot); }
+
+  /* the unit change: time becomes distance */
+  .gate {
+    background: var(--ink);
+    color: var(--cream);
+    border-radius: 6px;
+    padding: 1.2rem 1.1rem;
+    margin-left: -.6rem;
+    box-shadow: 0 8px 20px -8px rgba(42,34,51,.6);
+  }
+  .gate::before {
+    left: -1.02rem;
+    top: 1.5rem;
+    background: var(--butter);
+    border-color: var(--butter);
+  }
+  .gate .stop-when { color: var(--butter); }
+  .gate .stop-what { color: var(--cream); }
+  .gate-title {
+    font-family: var(--f-black);
+    font-size: 1.6rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    margin: .2rem 0 .5rem;
+  }
+
+  .clock {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .4rem;
+    margin-top: .9rem;
+  }
+  .unit {
+    background: rgba(255,246,232,.12);
+    border-radius: 8px;
+    padding: .4rem .55rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .05rem;
+    min-width: 3.4rem;
+  }
+  .unit b {
+    font-family: var(--f-black);
+    font-size: 1.15rem;
+    line-height: 1;
+    letter-spacing: -.03em;
+    font-variant-numeric: tabular-nums;
+    color: var(--butter);
+  }
+  .unit span {
+    font-family: var(--f-mono);
+    font-size: .5rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: rgba(255,246,232,.6);
+  }
+
+  .km .stop-when { color: var(--denim); font-family: var(--f-black); font-size: .7rem; letter-spacing: .1em; }
+
+  /* ---------- the finish ---------- */
+
+  .finish { gap: 1.4rem; padding-block: 6vh 12vh; }
+
+  .finish-head {
+    position: relative;
+    z-index: 2;
+    font-family: var(--f-black);
+    font-size: clamp(2rem, 11vw, 3rem);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    margin: 0;
+    background: repeating-linear-gradient(90deg, var(--ink) 0 10px, var(--cream) 10px 20px);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--ink);
   }
 
   .bib {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: 15rem;
     background: var(--paper-2);
     border-radius: 5px;
-    padding: 1.1rem 1.2rem 0;
+    padding: .9rem 1rem 0;
     box-shadow: 0 10px 24px -8px rgba(42,34,51,.4);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: .5rem;
+    gap: .35rem;
     overflow: hidden;
+    transform: rotate(-2deg);
   }
-
+  .bib.two { transform: rotate(3deg); margin-top: -3.2rem; margin-left: 3.4rem; }
   .bib-org {
     font-family: var(--f-black);
-    font-size: .74rem;
-    letter-spacing: .04em;
+    font-size: .6rem;
+    letter-spacing: .06em;
     text-transform: uppercase;
     color: var(--hot);
     text-align: center;
-    line-height: 1.25;
+    line-height: 1.3;
   }
   .bib-org small {
     display: block;
     font-family: var(--f-mono);
-    font-size: .58rem;
+    font-size: .5rem;
     font-weight: 400;
-    letter-spacing: .2em;
+    letter-spacing: .18em;
     color: var(--ink-soft);
-    margin-top: .25rem;
   }
-
   .bib-num {
     font-family: var(--f-black);
-    font-size: clamp(4.2rem, 26vw, 6rem);
-    line-height: .82;
+    font-size: 3.1rem;
+    line-height: .85;
     letter-spacing: -.05em;
     color: var(--ink);
     font-variant-numeric: tabular-nums;
   }
-
   .bib-name {
     font-family: var(--f-black);
-    font-size: 1.15rem;
+    font-size: .85rem;
     letter-spacing: .16em;
     text-transform: uppercase;
     color: var(--denim);
   }
-
-  .bib-meta {
-    width: 100%;
-    border-top: 1.5px dashed rgba(42,34,51,.22);
-    padding-top: .7rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: .55rem .7rem;
-    text-align: left;
-  }
-  .bib-meta > div { display: flex; flex-direction: column; gap: .12rem; min-width: 0; }
-  .bib-meta span {
-    font-family: var(--f-mono);
-    font-size: .54rem;
-    letter-spacing: .16em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-  }
-  .bib-meta b {
-    font-family: var(--f-type);
-    font-size: .9rem;
-  }
-
   .bib-chip {
-    width: calc(100% + 2.4rem);
-    margin: .8rem -1.2rem 0;
-    padding: .5rem 1.2rem;
+    width: calc(100% + 2rem);
+    margin: .55rem -1rem 0;
+    padding: .4rem 1rem;
     background: rgba(255,179,209,.18);
     border-top: 1px solid rgba(42,34,51,.1);
-    display: flex;
-    align-items: center;
-    gap: .7rem;
   }
   .chip-bars {
-    height: 1.5rem;
-    flex: 1;
-    min-width: 0;
+    height: 1.05rem;
     background: repeating-linear-gradient(90deg,
-      var(--ink) 0 2px, transparent 2px 5px,
-      var(--ink) 5px 6px, transparent 6px 10px);
-    opacity: .75;
+      var(--ink) 0 2px, transparent 2px 5px, var(--ink) 5px 6px, transparent 6px 10px);
+    opacity: .7;
   }
-  .chip-code {
-    font-family: var(--f-mono);
-    font-size: .56rem;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    white-space: nowrap;
-  }
-
-  /* safety-pin holes, the detail that makes it read as a real bib */
   .pin {
     position: absolute;
-    width: .55rem;
-    height: .55rem;
+    width: .45rem; height: .45rem;
     border-radius: 50%;
     background: var(--paper);
     box-shadow: inset 0 1px 2px rgba(42,34,51,.35);
   }
-  .pin.tl { top: .5rem; left: .5rem; }
-  .pin.tr { top: .5rem; right: .5rem; }
-  .pin.bl { bottom: .5rem; left: .5rem; }
-  .pin.br { bottom: .5rem; right: .5rem; }
+  .pin.tl { top: .4rem; left: .4rem; }
+  .pin.tr { top: .4rem; right: .4rem; }
+
+  .bibs { position: relative; z-index: 3; width: 100%; max-width: 20rem; display: flex; flex-direction: column; }
+
+  /* ---------- notes ---------- */
 
   .note {
     position: relative;
@@ -403,7 +599,6 @@
     color: var(--ink-soft);
     margin-bottom: .5rem;
   }
-  /* the BUNT. callback carries the old ticket edge as its stripe */
   .note.encore { transform: rotate(1.5deg); padding-top: 1.4rem; }
   .note.encore::before {
     content: "";
@@ -414,91 +609,15 @@
       var(--hot) 0 14px, var(--butter) 14px 28px,
       var(--denim) 28px 42px, var(--mint) 42px 56px);
   }
-
-  /* ---------- polaroid ---------- */
-
-  .polaroid {
-    position: relative;
-    z-index: 3;
-    background: #fff;
-    padding: .7rem .7rem 2.4rem;
-    box-shadow: 0 8px 18px -6px rgba(42,34,51,.4);
-    transform: rotate(3deg);
-    width: clamp(9rem, 46vw, 12rem);
-    margin: 0;
-  }
-  .polaroid svg { display: block; width: 100%; height: auto; }
-  .polaroid figcaption {
-    position: absolute;
-    bottom: .55rem;
-    left: 0; right: 0;
-    text-align: center;
-    font-family: var(--f-hand);
-    font-size: .95rem;
-    color: var(--denim);
-  }
-
-  /* ---------- countdown ---------- */
-
-  .count { gap: 1.2rem; padding-block: 14vh; }
-  .count-label {
-    position: relative;
-    z-index: 2;
-    font-family: var(--f-mono);
-    font-size: .66rem;
-    letter-spacing: .2em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-  }
-  .clock {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: .6rem;
-  }
-  .unit {
-    background: var(--cream);
-    border-radius: 999px;
-    padding: .55rem .9rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: .1rem;
-    box-shadow: 0 2px 4px rgba(42,34,51,.16);
-    min-width: 4.2rem;
-  }
-  .unit:nth-child(1) { background: var(--bubble); transform: rotate(-3deg); }
-  .unit:nth-child(2) { background: var(--butter); transform: rotate(2deg); }
-  .unit:nth-child(3) { background: var(--sky);    transform: rotate(-2deg); }
-  .unit:nth-child(4) { background: var(--mint);   transform: rotate(3deg); }
-  .unit b {
-    font-family: var(--f-black);
-    font-size: clamp(1.4rem, 7vw, 1.9rem);
-    line-height: 1;
-    letter-spacing: -.04em;
-    font-variant-numeric: tabular-nums;
-    color: var(--ink);
-  }
-  .unit span {
-    font-family: var(--f-mono);
-    font-size: .54rem;
-    letter-spacing: .16em;
-    text-transform: uppercase;
-    color: rgba(42,34,51,.65);
-  }
-
-  .note-wrap { padding-block: 7vh 5vh; }
-  .encore-wrap { padding-block: 5vh 7vh; }
+  .encore-wrap { padding-block: 4vh 8vh; }
 
   /* ---------- close ---------- */
 
   .close {
-    min-height: 68svh;
+    min-height: 62svh;
     justify-content: center;
     gap: 1.5rem;
-    padding-block: 6vh 10vh;
+    padding-block: 6vh 12vh;
   }
   .close-line {
     position: relative;
@@ -512,8 +631,7 @@
     transform: rotate(-1deg);
   }
   .close-line .pink { color: var(--hot); font-style: italic; }
-
-  .sign {
+  .sign-off {
     position: relative;
     z-index: 2;
     margin: 0;
@@ -525,7 +643,7 @@
     transform: rotate(-2deg);
   }
 
-  /* ---------- phone-first sticker placement ---------- */
+  /* ---------- sticker placement, phone first ---------- */
 
   .s-cup    { width: 20%; top: 3%;  left: 6%;   transform: rotate(-8deg); }
   .s-lips1  { width: 18%; top: 5%;  left: 33%;  transform: rotate(-14deg); }
@@ -536,36 +654,29 @@
   .s-shoe   { width: 22%; bottom: 10%; right: 4%; transform: rotate(8deg); }
   .s-eye    { width: 13%; bottom: 8%;  left: 8%;  transform: rotate(-6deg); }
 
-  .s-tulip  { width: 26%; top: 6%;  left: 3%;   transform: rotate(-7deg); }
-  .s-xoxo   { width: 27%; top: 12%; right: 2%;  transform: rotate(9deg); }
-  .s-dice   { width: 15%; bottom: 14%; right: 6%; transform: rotate(-12deg); }
-  .s-mtn    { width: 30%; bottom: 6%; left: 2%;  transform: rotate(4deg); }
+  .s-tulip  { width: 24%; top: 8%;  left: 3%;   transform: rotate(-7deg); }
+  .s-watch  { width: 20%; bottom: 10%; right: 4%; transform: rotate(9deg); }
 
-  .s-km     { width: 27%; top: 7%;  left: 3%;   transform: rotate(-9deg); }
-  .s-bfly2  { width: 16%; top: 6%;  right: 6%;  transform: rotate(-16deg); }
-  .s-star3  { width: 11%; bottom: 18%; left: 6%; transform: rotate(18deg); }
-  .s-medal  { width: 18%; bottom: 9%; right: 5%; transform: rotate(-10deg); }
+  .s-xoxo   { width: 26%; top: 2%;  right: 2%;  transform: rotate(9deg); }
+  .s-dice   { width: 14%; bottom: 4%; left: 4%; transform: rotate(-12deg); }
 
-  .s-heart  { width: 16%; top: 5%;  right: 5%;  transform: rotate(11deg); }
-  .s-flower { width: 20%; bottom: 8%; left: 4%; transform: rotate(-8deg); }
+  .s-medal  { width: 20%; top: 4%;  right: 5%;  transform: rotate(-10deg); }
+  .s-km     { width: 26%; bottom: 5%; left: 3%;  transform: rotate(-9deg); }
+  .s-flower { width: 18%; bottom: 6%; right: 6%; transform: rotate(8deg); }
 
-  /* stuck on the note's corner rather than hidden behind it */
-  .s-watch  { width: 17%; top: 2%;  left: 5%;   transform: rotate(-16deg); z-index: 3; }
   .s-disco2 { width: 17%; top: 1%;  right: 6%;  transform: rotate(10deg); z-index: 3; }
 
   .s-bfly3  { width: 15%; top: 6%;  right: 7%;  transform: rotate(14deg); }
   .s-lips2  { width: 16%; bottom: 9%; left: 7%; transform: rotate(9deg); }
+  .s-heart  { width: 13%; top: 8%;  left: 6%;   transform: rotate(-11deg); }
 
-  /* very narrow phones: thin the board so it never feels cramped */
   @media (max-width: 359px) {
-    .s-bfly1, .s-star2, .s-eye, .s-star3, .s-dice { display: none; }
+    .s-bfly1, .s-star2, .s-eye, .s-dice, .s-heart { display: none; }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .line, .bib-stack { opacity: 1; transition: none; }
-    .line { transform: rotate(-1deg); }
-    .bib-stack { transform: rotate(-2deg); }
-    .hint::after { animation: none; }
+    .offer-line { opacity: 1; transform: none; transition: none; }
+    .hint::after, .stamp { animation: none; }
   }
 </style>
 
@@ -625,7 +736,6 @@
     <div class="sticker s-star2"><svg viewBox="0 0 100 100"><g class="cut">
       <path d="M50 6l12 30 32 2-25 21 8 31-27-18-27 18 8-31L6 38l32-2z" fill="#E8398B"/>
     </g></svg></div>
-
     <div class="sticker s-shoe"><svg viewBox="0 0 100 100"><g class="cut">
       <path d="M10 60c0-7 5-11 11-12l14-3 13-12c4-3 9-2 11 3l3 9c9 3 19 7 26 13 5 4 7 8 7 12 0 3-2 5-6 5H16c-4 0-6-2-6-6z" fill="#E8398B"/>
       <path class="det" d="M10 70h85v5c0 3-2 5-6 5H16c-4 0-6-2-6-5z" fill="#FFF6E8"/>
@@ -633,7 +743,6 @@
         <path d="M42 41l9 12M50 37l10 13M58 34l10 14"/>
       </g>
     </g></svg></div>
-
     <div class="sticker s-eye"><svg viewBox="0 0 100 100"><g class="cut">
       <circle cx="50" cy="50" r="42" fill="#2E5FA3"/>
       <g class="det">
@@ -646,8 +755,8 @@
     <div class="hint" id="hint">Scroll</div>
   </section>
 
-  <!-- ============ STORY ============ -->
-  <section class="story">
+  <!-- ============ THE OFFER ============ -->
+  <section class="offer">
     <div class="sticker s-tulip"><svg viewBox="0 0 100 100"><g class="cut">
       <path d="M50 92V44M50 60c-12-4-20-14-22-26M50 60c12-4 20-14 22-26" stroke="#4E8C5A" stroke-width="5" fill="none"/>
       <path d="M30 20c0-8 6-12 10-12s10 4 10 12v14c0 6-4 10-10 10s-10-4-10-10z" fill="#E8398B"/>
@@ -655,15 +764,55 @@
       <path d="M40 34c0-8 6-12 10-12s10 4 10 12v14c0 6-4 10-10 10s-10-4-10-10z" fill="#F2708A"/>
     </g></svg></div>
 
+    <p class="offer-line">Ich schenke dir <span class="pink">keine Karte.</span></p>
+    <p class="offer-line">Ich schenke dir<span class="big">279 Tage</span></p>
+    <p class="offer-line">und am Ende <span class="pink">21,0975 Kilometer.</span></p>
+
+    <div class="sticker s-watch"><svg viewBox="0 0 100 100"><g class="cut">
+      <rect x="42" y="2" width="16" height="11" rx="3" fill="#6B3A5B"/>
+      <circle cx="50" cy="56" r="36" fill="#FFD95C"/>
+      <g class="det">
+        <circle cx="50" cy="56" r="28" fill="#FFF6E8"/>
+        <path d="M50 36v20l13 9" stroke="#E8398B" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <circle cx="50" cy="56" r="4" fill="#2A2233"/>
+      </g>
+    </g></svg></div>
+  </section>
+
+  <!-- ============ THE PACT ============ -->
+  <section class="pact">
     <div class="sticker s-xoxo"><svg viewBox="0 0 140 70"><g class="cut">
       <rect x="4" y="4" width="132" height="62" rx="31" fill="#FFF6E8" stroke="#D62246" stroke-width="3"/>
       <text x="70" y="48" text-anchor="middle" font-family="Georgia, serif" font-size="34" font-weight="700" fill="#D62246" letter-spacing="2">XOXO</text>
     </g></svg></div>
 
-    <p class="line">Letztes Jahr: <span class="pink">du, ich, BUNT.</span></p>
-    <p class="line">Und das war <span class="hl">erst der Anfang.</span></p>
-    <p class="line">Das Nächste, das wir zusammen machen,</p>
-    <p class="line">hat <span class="pink">keine Bühne.</span></p>
+    <h2 class="pact-head">Der Pakt</h2>
+    <p class="pact-sub">Salzburg · 23. Mai 2027 · 21,0975 km</p>
+
+    <div class="party mine">
+      <h3>Ich verpflichte mich</h3>
+      <ul>
+        <li>Ich melde uns beide an, sobald die Anmeldung aufgeht, und zahle beide Startgelder.</li>
+        <li>Ich laufe jeden Sonntag mit dir. Auch bei Regen. Auch im Jänner.</li>
+        <li>Ich laufe nie schneller, als du gerade kannst.</li>
+        <li>Ich sag kein einziges Mal „hab ich dir doch gesagt".</li>
+      </ul>
+    </div>
+
+    <div class="party hers">
+      <h3>Du verpflichtest dich</h3>
+      <ul>
+        <li>Du darfst jammern. Unbegrenzt. Das ist ausdrücklich erlaubt.</li>
+        <li>Du sagst mir, wenn du nicht mehr magst — aber frühestens ab Kilometer fünf.</li>
+        <li>Du gibst nicht auf, nur weil es schüttet.</li>
+        <li>Du läufst mit mir ins Ziel. Nicht vor mir.</li>
+      </ul>
+    </div>
+
+    <div class="sign-row">
+      <button class="sign-btn" id="signBtn" type="button">Tippen zum Unterschreiben</button>
+      <div class="stamp" id="stamp" hidden>Unterschrieben<small id="stampDate"></small></div>
+    </div>
 
     <div class="sticker s-dice"><svg viewBox="0 0 100 100"><g class="cut">
       <rect x="10" y="10" width="80" height="80" rx="16" fill="#FFF6E8"/>
@@ -673,67 +822,95 @@
         <circle cx="32" cy="68" r="8"/><circle cx="68" cy="68" r="8"/>
       </g>
     </g></svg></div>
-
-    <div class="sticker s-mtn"><svg viewBox="0 0 120 90"><g class="cut">
-      <path d="M8 78L42 16l22 38 12-18 36 42z" fill="#3E5C97"/>
-      <path class="det" d="M42 16l12 22c-8 4-14 2-20-2zM76 36l8 12c-6 2-10 1-14-2z" fill="#F2F6FC"/>
-      <circle cx="94" cy="20" r="9" fill="#FFD95C"/>
-    </g></svg></div>
   </section>
 
-  <!-- ============ REVEAL: the bib ============ -->
-  <section class="reveal">
-    <div class="sticker s-km"><svg viewBox="0 0 140 70"><g class="cut">
-      <rect x="4" y="4" width="132" height="62" rx="31" fill="#FFF6E8" stroke="#3E5C97" stroke-width="3"/>
-      <text x="70" y="47" text-anchor="middle" font-family="Georgia, serif" font-size="27" font-weight="700" fill="#3E5C97" letter-spacing="1">21,1 KM</text>
-    </g></svg></div>
+  <!-- ============ ONE LINE: time, then distance ============ -->
+  <section class="journey">
+    <div class="rail">
 
-    <div class="sticker s-bfly2"><svg viewBox="0 0 100 100"><g class="cut">
-      <path d="M50 50C38 22 14 20 12 38c-2 16 22 20 38 12z" fill="#A8C4E8"/>
-      <path d="M50 50c12-28 36-30 38-12 2 16-22 20-38 12z" fill="#C4A7E7"/>
-      <path d="M50 50C40 76 20 82 18 68c-2-12 20-22 32-18z" fill="#FFB3D1"/>
-      <path d="M50 50c10 26 30 32 32 18 2-12-20-22-32-18z" fill="#A8E0C8"/>
-      <rect class="det" x="46" y="32" width="8" height="46" rx="4" fill="#6B3A5B"/>
-    </g></svg></div>
-
-    <div class="bib-stack" id="bibStack">
-      <div class="bib behind" aria-hidden="true">
-        <div class="bib-org">Sparkasse Halbmarathon<small>Salzburg 2027</small></div>
-        <div class="bib-num">21</div>
-        <div class="bib-name">Ich</div>
-        <div class="bib-chip"><div class="chip-bars"></div><div class="chip-code">Start 08:30</div></div>
+      <div class="stop">
+        <div class="stop-when">Heute · 15. August 2026</div>
+        <div class="stop-what">Der Pakt steht. Ab hier zählen wir runter.</div>
       </div>
 
-      <div class="bib">
-        <span class="pin tl"></span><span class="pin tr"></span>
-        <span class="pin bl"></span><span class="pin br"></span>
-        <div class="bib-org">Sparkasse Halbmarathon<small>Salzburg 2027</small></div>
-        <div class="bib-num">20</div>
-        <div class="bib-name">Hannah</div>
-        <div class="bib-meta">
-          <div><span>Datum</span><b>So 23. Mai 2027</b></div>
-          <div><span>Start</span><b>08:30 Uhr</b></div>
-          <div><span>Distanz</span><b>21,0975 km</b></div>
-          <div><span>Startbogen</span><b>Staatsbrücke</b></div>
-        </div>
-        <div class="bib-chip">
-          <div class="chip-bars" aria-hidden="true"></div>
-          <div class="chip-code">HNH · 20 · SBG<br>2 Startnummern</div>
+      <div class="stop">
+        <div class="stop-when">Ein Sonntag im September</div>
+        <div class="stop-what">Erster gemeinsamer Lauf. Kurz, langsam, unwürdig. <em>Zählt trotzdem.</em></div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-when">Sobald die Anmeldung aufgeht</div>
+        <div class="stop-what">Zwei Startplätze. Ich zahl, du bist dabei — dann gibt's kein Zurück mehr.</div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-when">Jänner 2027</div>
+        <div class="stop-what">Der Monat, in dem wir beide keine Lust haben. Wir laufen trotzdem.</div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-when">Februar 2027</div>
+        <div class="stop-what">Erste zehn Kilometer am Stück. <em>Die halbe Miete.</em></div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-when">April 2027</div>
+        <div class="stop-what">Generalprobe. Achtzehn Kilometer. Danach weißt du, dass du es kannst.</div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-when">Samstag, 22. Mai 2027</div>
+        <div class="stop-what">Anreise Salzburg. Startnummern abholen. Nervös sein.</div>
+      </div>
+
+      <!-- the unit changes here -->
+      <div class="stop gate">
+        <div class="stop-when">Sonntag, 23. Mai 2027 · 08:30</div>
+        <div class="gate-title">Startschuss</div>
+        <div class="stop-what">Staatsbrücke. Ab hier zählen wir keine Tage mehr, sondern Kilometer.</div>
+        <div class="clock" id="clock">
+          <div class="unit"><b id="d">—</b><span>Tage</span></div>
+          <div class="unit"><b id="h">—</b><span>Std</span></div>
+          <div class="unit"><b id="m">—</b><span>Min</span></div>
+          <div class="unit"><b id="s">—</b><span>Sek</span></div>
         </div>
       </div>
+
+      <div class="stop km">
+        <div class="stop-when">Kilometer 1</div>
+        <div class="stop-what">Viel zu schnell losgelaufen. Machen alle.</div>
+      </div>
+
+      <div class="stop km">
+        <div class="stop-when">Kilometer 5</div>
+        <div class="stop-what">Ab hier darfst du laut Pakt zum ersten Mal sagen, dass du nicht mehr magst.</div>
+      </div>
+
+      <div class="stop km">
+        <div class="stop-when">Kilometer 10,5</div>
+        <div class="stop-what">Halbzeit. <em>Hier würdest du sonst umdrehen.</em></div>
+      </div>
+
+      <div class="stop km">
+        <div class="stop-when">Kilometer 15</div>
+        <div class="stop-what">Der Teil, den keiner mag. Ich rede dich da durch.</div>
+      </div>
+
+      <div class="stop km">
+        <div class="stop-when">Kilometer 19</div>
+        <div class="stop-what">Es sind nur noch zwei. <em>Zwei.</em></div>
+      </div>
+
+      <div class="stop km">
+        <div class="stop-when">Kilometer 21,0975</div>
+        <div class="stop-what">Ziel. Wir laufen nebeneinander rein, so steht's im Pakt.</div>
+      </div>
+
     </div>
+  </section>
 
-    <p class="note" style="transform: rotate(1deg)">
-      <span class="kicker">Was da steht</span>
-      Zwei Startnummern. Einundzwanzig Kilometer quer durch Salzburg,
-      vom Startbogen auf der Staatsbrücke bis zurück in die Altstadt.
-      <b>Nebeneinander</b>, nicht gegeneinander.
-    </p>
-
-    <div class="sticker s-star3"><svg viewBox="0 0 100 100"><g class="cut">
-      <path d="M50 6l12 30 32 2-25 21 8 31-27-18-27 18 8-31L6 38l32-2z" fill="#FFD95C"/>
-    </g></svg></div>
-
+  <!-- ============ THE FINISH ============ -->
+  <section class="finish">
     <div class="sticker s-medal"><svg viewBox="0 0 100 100"><g class="cut">
       <path d="M28 6l16 32h-14L16 6z" fill="#3E5C97"/>
       <path d="M72 6L56 38h14L84 6z" fill="#A8C4E8"/>
@@ -743,37 +920,37 @@
         <path d="M50 49l4.5 9.6 10.5 1.5-7.5 7.4 1.8 10.5L50 73l-9.3 5 1.8-10.5-7.5-7.4 10.5-1.5z" fill="#FFF6E8"/>
       </g>
     </g></svg></div>
-  </section>
 
-  <!-- ============ COUNTDOWN ============ -->
-  <section class="count">
-    <div class="sticker s-heart"><svg viewBox="0 0 100 100"><g class="cut">
-      <path d="M50 86C22 66 8 52 8 34 8 20 18 12 30 12c8 0 16 4 20 12 4-8 12-12 20-12 12 0 22 8 22 22 0 18-14 32-42 52z" fill="#E8398B"/>
-    </g></svg></div>
+    <h2 class="finish-head">Ziel</h2>
 
-    <div class="count-label">Bis zum Startschuss</div>
-    <div class="clock" id="clock">
-      <div class="unit"><b id="d">—</b><span>Tage</span></div>
-      <div class="unit"><b id="h">—</b><span>Std</span></div>
-      <div class="unit"><b id="m">—</b><span>Min</span></div>
-      <div class="unit"><b id="s">—</b><span>Sek</span></div>
+    <div class="bibs">
+      <div class="bib">
+        <span class="pin tl"></span><span class="pin tr"></span>
+        <div class="bib-org">Sparkasse Halbmarathon<small>Salzburg 2027</small></div>
+        <div class="bib-num">20</div>
+        <div class="bib-name">Hannah</div>
+        <div class="bib-chip"><div class="chip-bars" aria-hidden="true"></div></div>
+      </div>
+      <div class="bib two">
+        <span class="pin tl"></span><span class="pin tr"></span>
+        <div class="bib-org">Sparkasse Halbmarathon<small>Salzburg 2027</small></div>
+        <div class="bib-num">21</div>
+        <div class="bib-name">Ich</div>
+        <div class="bib-chip"><div class="chip-bars" aria-hidden="true"></div></div>
+      </div>
     </div>
 
-    <figure class="polaroid">
-      <svg viewBox="0 0 100 100" role="img" aria-label="Gezeichnete Szene: Salzburg im Morgenlicht mit Festung">
-        <rect width="100" height="100" fill="#FFE0BE"/>
-        <circle cx="72" cy="26" r="11" fill="#FFD95C"/>
-        <path d="M0 66l20-16 12 8 16-18 18 14 14-10 20 16v40H0z" fill="#9FB3DC"/>
-        <g fill="#5E7099">
-          <path d="M34 44h28v10H34z"/><path d="M42 34h12v10H42z"/><path d="M46 27h4v7h-4z"/>
-        </g>
-        <path d="M0 80h100v20H0z" fill="#7392C9"/>
-        <path d="M0 84c14 3 28-3 42 0s30 4 58 0" stroke="#A9C0E8" stroke-width="2" fill="none"/>
-        <g fill="#E8398B"><circle cx="34" cy="92" r="3"/><circle cx="44" cy="93" r="3"/></g>
-      </svg>
-      <figcaption>Salzburg, Mai '27</figcaption>
-    </figure>
+    <p class="note" style="transform: rotate(1deg)">
+      <span class="kicker">Was dann passiert</span>
+      Zwei Medaillen, zwei ruinierte Beine und ein Frühstück, das wir uns
+      dann wirklich verdient haben. <b>Das ist das Geschenk.</b> Nicht die
+      Startnummer — die 279 Tage davor.
+    </p>
 
+    <div class="sticker s-km"><svg viewBox="0 0 140 70"><g class="cut">
+      <rect x="4" y="4" width="132" height="62" rx="31" fill="#FFF6E8" stroke="#3E5C97" stroke-width="3"/>
+      <text x="70" y="47" text-anchor="middle" font-family="Georgia, serif" font-size="27" font-weight="700" fill="#3E5C97" letter-spacing="1">21,1 KM</text>
+    </g></svg></div>
     <div class="sticker s-flower"><svg viewBox="0 0 100 100"><g class="cut">
       <g fill="#FFB3D1">
         <ellipse cx="50" cy="26" rx="15" ry="20"/><ellipse cx="74" cy="44" rx="15" ry="20" transform="rotate(72 74 44)"/>
@@ -787,27 +964,7 @@
     </g></svg></div>
   </section>
 
-  <!-- ============ SMALL PRINT ============ -->
-  <section class="note-wrap">
-    <div class="sticker s-watch"><svg viewBox="0 0 100 100"><g class="cut">
-      <rect x="42" y="2" width="16" height="11" rx="3" fill="#6B3A5B"/>
-      <circle cx="50" cy="56" r="36" fill="#FFD95C"/>
-      <g class="det">
-        <circle cx="50" cy="56" r="28" fill="#FFF6E8"/>
-        <path d="M50 36v20l13 9" stroke="#E8398B" stroke-width="5" fill="none" stroke-linecap="round"/>
-        <circle cx="50" cy="56" r="4" fill="#2A2233"/>
-      </g>
-    </g></svg></div>
-
-    <div class="note">
-      <span class="kicker">Das Kleingedruckte</span>
-      Die Anmeldung für 2027 ist <b>noch nicht offen</b>. Sobald sie aufgeht,
-      meld ich uns beide an. Bis dahin gilt diese Karte — und wir haben
-      neun Monate Zeit, so zu tun, als würden wir trainieren.
-    </div>
-  </section>
-
-  <!-- ============ THE ENCORE: BUNT. is not cancelled ============ -->
+  <!-- ============ THE ENCORE ============ -->
   <section class="encore-wrap">
     <div class="sticker s-disco2"><svg viewBox="0 0 100 100"><g class="cut">
       <rect x="46" y="2" width="8" height="14" rx="2" fill="#9AA3B0"/>
@@ -819,9 +976,9 @@
 
     <div class="note encore">
       <span class="kicker">Und weil du jetzt fragst</span>
-      <b>BUNT.</b> ist nicht gestrichen, nur verschoben. Nächsten Sommer schauen
+      <b>BUNT.</b> ist nicht gestrichen, nur verschoben. Im Sommer danach schauen
       wir ihn uns wieder gemeinsam an — auf seiner richtigen Tour. München,
-      oder wo immer er dann spielt. Das ist dann Geschenk Nummer zwei.
+      oder wo immer er dann spielt. Betrachte das als Zielprämie.
     </div>
   </section>
 
@@ -834,6 +991,9 @@
       <path d="M50 50c10 26 30 32 32 18 2-12-20-22-32-18z" fill="#A8C4E8"/>
       <rect class="det" x="46" y="32" width="8" height="46" rx="4" fill="#6B3A5B"/>
     </g></svg></div>
+    <div class="sticker s-heart"><svg viewBox="0 0 100 100"><g class="cut">
+      <path d="M50 86C22 66 8 52 8 34 8 20 18 12 30 12c8 0 16 4 20 12 4-8 12-12 20-12 12 0 22 8 22 22 0 18-14 32-42 52z" fill="#E8398B"/>
+    </g></svg></div>
     <div class="sticker s-lips2"><svg viewBox="0 0 100 100"><g class="cut">
       <path d="M50 34c8-12 26-16 34-6 6 8-2 14-8 16 8 0 12 6 8 12-8 12-24 20-34 20S22 68 14 56c-4-6 0-12 8-12-6-2-14-8-8-16 8-10 26-6 36 6z" fill="#D62246"/>
       <path class="det" d="M18 46c12-3 52-3 64 0-10 5-54 5-64 0z" fill="#8E1028"/>
@@ -845,7 +1005,7 @@
       <span class="word"><span class="l3">J</span><span class="l5">A</span><span class="l1">H</span><span class="l6">R</span><span class="l4">E</span></span>
     </p>
     <p class="close-line">Weil ein Konzert mit dir<br><span class="pink">zu wenig war.</span></p>
-    <p class="sign">Alles Gute, Hannah.</p>
+    <p class="sign-off">Alles Gute, Hannah.</p>
   </section>
 
 </main>
@@ -853,9 +1013,9 @@
 <script>
 (function () {
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var lines = document.querySelectorAll(".line");
-  var bib = document.getElementById("bibStack");
 
+  /* ---- the offer lines fade in ---- */
+  var lines = document.querySelectorAll(".offer-line");
   if ("IntersectionObserver" in window && !reduce) {
     var io = new IntersectionObserver(function (es) {
       es.forEach(function (e) {
@@ -863,24 +1023,45 @@
       });
     }, { threshold: 0.6 });
     lines.forEach(function (el) { io.observe(el); });
-
-    var bio = new IntersectionObserver(function (es) {
-      es.forEach(function (e) {
-        if (e.isIntersecting) { bib.classList.add("in"); bio.disconnect(); }
-      });
-    }, { threshold: 0.3 });
-    bio.observe(bib);
   } else {
     lines.forEach(function (el) { el.classList.add("in"); });
-    bib.classList.add("in");
   }
 
+  /* ---- signing the pact ---- */
+  var btn = document.getElementById("signBtn");
+  var stamp = document.getElementById("stamp");
+  var stampDate = document.getElementById("stampDate");
+  var KEY = "pakt-unterschrieben";
+
+  function applySignature(dateText) {
+    document.body.classList.add("signed");
+    stampDate.textContent = dateText;
+    stamp.hidden = false;
+    btn.hidden = true;
+  }
+
+  function today() {
+    var n = new Date();
+    return ("0" + n.getDate()).slice(-2) + "." + ("0" + (n.getMonth() + 1)).slice(-2) + "." + n.getFullYear();
+  }
+
+  var stored = null;
+  try { stored = window.localStorage.getItem(KEY); } catch (e) { /* storage blocked — fine */ }
+  if (stored) applySignature(stored);
+
+  btn.addEventListener("click", function () {
+    var d = today();
+    applySignature(d);
+    try { window.localStorage.setItem(KEY, d); } catch (e) { /* not persisted, still signed */ }
+  });
+
+  /* ---- scroll hint ---- */
   var hint = document.getElementById("hint");
   window.addEventListener("scroll", function () {
     if (window.scrollY > 50) hint.classList.add("gone");
   }, { passive: true });
 
-  /* Sparkasse Halbmarathon Salzburg — Sun 23 May 2027, 08:30 CEST */
+  /* ---- countdown: Sparkasse Halbmarathon Salzburg, Sun 23 May 2027, 08:30 CEST ---- */
   var target = new Date("2027-05-23T08:30:00+02:00").getTime();
   var d = document.getElementById("d"), h = document.getElementById("h"),
       m = document.getElementById("m"), s = document.getElementById("s");
@@ -889,7 +1070,6 @@
     var left = target - Date.now();
     if (left <= 0) {
       d.textContent = h.textContent = m.textContent = s.textContent = "00";
-      document.querySelector(".count-label").textContent = "Los";
       return;
     }
     var sec = Math.floor(left / 1000);
