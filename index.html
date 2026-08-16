@@ -840,23 +840,35 @@
   var teasers = document.querySelectorAll(".tease-line");
   var goal = document.getElementById("goal");
 
-  if ("IntersectionObserver" in window && !reduce) {
-    var tObs = new IntersectionObserver(function (es) {
-      es.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add("in"); tObs.unobserve(e.target); }
-      });
-    }, { threshold: 0.7 });
-    teasers.forEach(function (el) { tObs.observe(el); });
+  /* A plain scroll check rather than IntersectionObserver: if the observer
+     ever fails to deliver, the bib would stay invisible forever and the card
+     would be broken. This costs a few lines and cannot silently not fire. */
+  function inView(el, ratio) {
+    var r = el.getBoundingClientRect();
+    var vh = window.innerHeight || document.documentElement.clientHeight;
+    if (!r.height) return false;
+    var visible = Math.max(0, Math.min(r.bottom, vh) - Math.max(r.top, 0));
+    return visible / Math.min(r.height, vh) >= ratio;
+  }
 
-    var gObs = new IntersectionObserver(function (es) {
-      es.forEach(function (e) {
-        if (e.isIntersecting) { goal.classList.add("revealed"); gObs.disconnect(); }
-      });
-    }, { threshold: 0.25 });
-    gObs.observe(goal);
-  } else {
-    teasers.forEach(function (el) { el.classList.add("in"); });
+  function checkReveals() {
+    for (var i = 0; i < teasers.length; i++) {
+      if (!teasers[i].classList.contains("in") && inView(teasers[i], 0.6)) {
+        teasers[i].classList.add("in");
+      }
+    }
+    if (!goal.classList.contains("revealed") && inView(goal, 0.2)) {
+      goal.classList.add("revealed");
+    }
+  }
+
+  if (reduce) {
+    for (var j = 0; j < teasers.length; j++) teasers[j].classList.add("in");
     goal.classList.add("revealed");
+  } else {
+    checkReveals();
+    window.addEventListener("scroll", checkReveals, { passive: true });
+    window.addEventListener("resize", checkReveals);
   }
 
   /* ---- "Bin dabei" ---- */
