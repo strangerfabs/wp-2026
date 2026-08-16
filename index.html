@@ -217,12 +217,18 @@
     position: relative;
     z-index: 2;
     font-family: var(--f-black);
-    font-size: clamp(3rem, 17vw, 4.6rem);
+    font-size: clamp(2.5rem, 13.5vw, 4rem);
     line-height: .95;
     letter-spacing: -.05em;
     color: var(--hot);
     margin: .2rem 0 0;
     font-variant-numeric: tabular-nums;
+    white-space: nowrap;   /* "km" must never drop to its own line */
+  }
+  .goal-num .u {
+    font-size: .44em;
+    letter-spacing: 0;
+    margin-left: .14em;
   }
   .goal-sub {
     position: relative;
@@ -263,7 +269,8 @@
     overflow: hidden;
     transform: rotate(-2deg);
   }
-  .bib.two { transform: rotate(3deg); margin-top: -3rem; margin-left: 4.2rem; }
+  /* overlap only the first bib's barcode strip, never its name */
+  .bib.two { transform: rotate(3deg); margin-top: -1rem; margin-left: 4.5rem; }
   .bib-org {
     font-family: var(--f-black);
     font-size: .58rem;
@@ -707,8 +714,8 @@
     </g></svg></div>
 
     <p class="goal-kicker">Unser Ziel 2027</p>
-    <p class="goal-num">21,0975 km</p>
-    <p class="goal-sub">Salzburger Halbmarathon, 23. Mai. <em>Du und ich.</em></p>
+    <p class="goal-num">21,0975<span class="u">km</span></p>
+    <p class="goal-sub">Salzburger Halbmarathon, 23. Mai.<br><em>Du und ich.</em></p>
 
     <div class="sticker s-star2"><svg viewBox="0 0 100 100"><g class="cut">
       <path d="M50 6l12 30 32 2-25 21 8 31-27-18-27 18 8-31L6 38l32-2z" fill="#E8398B"/>
